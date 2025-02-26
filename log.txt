@@ -623,3 +623,12 @@ System.Threading.Channels.ChannelClosedException: The channel has been closed.
 2025-02-26 09:38:57.355 +05:30 [WRN] No ConfigurationItems have been defined, configuration won't surface any configuration from the client!
 2025-02-26 09:38:57.589 +05:30 [DBG] Finished: Routing Notification initialized in 500ms
 2025-02-26 09:38:57.590 +05:30 [DBG] Finished: Processing notification initialized in 503ms
+2025-02-26 16:49:37.022 +05:30 [DBG] Finding descriptors for $/setTrace
+2025-02-26 16:49:37.225 +05:30 [DBG] Swapping from "Serial" to "Parallel"
+2025-02-26 16:49:37.226 +05:30 [DBG] Completing existing request process type "Serial"
+2025-02-26 16:49:37.242 +05:30 [DBG] Queueing "Parallel":$/setTrace request for processing
+2025-02-26 16:49:37.256 +05:30 [DBG] Starting: Processing notification $/setTrace
+2025-02-26 16:49:37.257 +05:30 [DBG] Starting: Routing Notification $/setTrace
+2025-02-26 16:49:37.258 +05:30 [VRB] Converting params for Notification $/setTrace to OmniSharp.Extensions.LanguageServer.Protocol.Models.SetTraceParams
+2025-02-26 16:49:37.276 +05:30 [DBG] Finished: Routing Notification $/setTrace in 17ms
+2025-02-26 16:49:37.276 +05:30 [DBG] Finished: Processing notification $/setTrace in 19ms
