@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       <Navbar/>
-      <main className="min-h-screen flex flex-col justify-start   ">
+      <main className="min-h-screen flex flex-col justify-start">
       <div className="">   
       <div className="area">
 			<ul className="circles">
@@ -40,11 +40,11 @@ export default function Home() {
                 Learn More
       </button></Link>
        </div>
-       <div className="flex  items-center justify-center ">
+       <div className="flex  items-center mt-2 justify-center ">
        <img 
             src="/images/hero.jpg"
             alt="Hero"
-            className="w-[500px] h-[300px]   rounded-lg animate-fade"/>
+            className="w-[400px] h-[200px]   rounded-lg animate-fade"/>
           
           </div>  
      
@@ -216,14 +216,14 @@ effortlessly. Whether you're a teacher, principal, or administrator, eduPulse pr
 Join us today and take the first step towards a smarter, more efficient school management experience! 
 </p>
 <div className="flex space-x-12 mt-6 justify-center ">
-      <Link href="/signup" className = "text-white hover:text-blue-700 ">
-      <button className="flex items-center px-4 py-2 bg-gray-200 text-blue-500 font-semibold rounded-full shadow hover:bg-gray-500">
+      <Link href="/registerroles" className = "text-white hover:text-blue-700 ">
+      <button className="flex items-center px-4 py-2 bg-gray-200 text-blue-500 font-semibold rounded-full shadow transform transition duration-300 hover:scale-110">
       <img src="/images/signup.jpg" alt="Signup icon" className="w-7 h-7 mr-1" />
            Sign Up now
       </button></Link>
 
       <Link href="/contact" className = "text-white hover:text-blue-700 ">
-      <button className="flex items-center px-4 py-2 bg-gray-200 text-blue-500 font-semibold rounded-full shadow hover:bg-gray-500">
+      <button className="flex items-center px-4 py-2 bg-gray-200 text-blue-500 font-semibold rounded-full shadow transform transition duration-300 hover:scale-110">
       <img src="/images/contactus.jpg" alt="Signup icon" className="w-7 h-7 mr-1" />
             Contact Us
       </button></Link>
@@ -310,37 +310,8 @@ Join us today and take the first step towards a smarter, more efficient school m
         &copy; {new Date().getFullYear()} eduPulse. All rights reserved.
       </div>
     </footer>
- 
-
-
- 
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     </main>
     </div>
-   
-
-
-
-
-
-
-  );
+);
 }
