@@ -1,47 +1,62 @@
+"use client"; 
+import { useEffect, useRef } from "react";
+import Chart from "chart.js/auto";
 
-"use client";
-import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+const AttendencesChart = () => {
+  const chartRef = useRef(null);
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+  useEffect(() => {
+    const ctx = chartRef.current.getContext("2d");
 
-const AttendanceChart = () => {
-  const data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [
-      {
-        label: "Attendance (%)",
-        data: [95, 90, 85, 80, 92, 88, 85, 89, 91, 94, 96, 97], // Example data
-        borderColor: "rgba(54, 162, 235, 1)",
-        backgroundColor: "rgba(54, 162, 235, 0.2)",
-        tension: 0.4,
-        fill: true,
+    const chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
+        datasets: [
+          {
+            label: "Student Attendence",
+            data: [112, 119, 30, 102, 201, 132, 142],
+            backgroundColor: "rgba(243, 243, 243, 0.2)",
+            borderColor: "rgba(0, 0, 139, 1)",
+            borderWidth: 1,
+          },
+        ],
       },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: true,
-        position: "top",
-      },
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        max: 100,
-      },
-    },
-  };
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            x: {
+                ticks: {
+                  color: "black", // Set X-axis label text color to black
+                },
+              },
+              y: {
+                ticks: {
+                  color: "black", // Set Y-axis label text color to black
+                  beginAtZero: true,
+                },
+            },
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: "black", // Set legend text color to black
+              },
+            },
+          },
+        },
+      });
+    return () => {
+      chart.destroy();
+    };
+  }, []);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-lg font-semibold mb-4">Monthly Attendance</h2>
-      <Line data={data} options={options} />
+    <div className="container w-[1000px] ] mx-auto px-10 py-12 mt-3">
+      <canvas ref={chartRef}></canvas>
     </div>
   );
 };
 
-export default AttendanceChart;
+export default AttendencesChart;

@@ -6,7 +6,7 @@ export default function Navbar() {
         
         <div className="flex items-center space-x-3">
   
-    <p className="text-3xl font-bold ml-10">eduPulse</p>
+        <Link href="/"> <p className="text-3xl font-bold ml-10">eduPulse</p></Link>
   </div>
 
   <div className="flex items-center space-x-10">

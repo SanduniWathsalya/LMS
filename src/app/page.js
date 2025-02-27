@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 
 
+
 export default function Home() {
   return (
     <div>
@@ -28,7 +29,7 @@ export default function Home() {
       <p className='text-1xl text-center   text-gray-400 mt-4'>Now you can manage your school, college, or any educational center with eduPulse. Your data's security is our top priority.</p>
     
       <div className="flex space-x-5 items-center justify-center ">
-      <Link href="/register" className = "text-white hover:text-blue-700 ">
+      <Link href="/contactus" className = "text-white hover:text-blue-700 ">
       <button className="flex items-center mt-5 px-4 py-2 bg-blue-500 text-white font-semibold rounded shadow hover:bg-blue-400 hover:scale-105 hover:opacity-80 transition-transform transition-opacity duration-300">
            <img src="/images/contactus.jpg" alt="icon" className="w-8 h-8 mr-3  " /> 
            Contact Us
@@ -222,7 +223,7 @@ Join us today and take the first step towards a smarter, more efficient school m
            Sign Up now
       </button></Link>
 
-      <Link href="/contact" className = "text-white hover:text-blue-700 ">
+      <Link href="/contactus" className = "text-white hover:text-blue-700 ">
       <button className="flex items-center px-4 py-2 bg-gray-200 text-blue-500 font-semibold rounded-full shadow transform transition duration-300 hover:scale-110">
       <img src="/images/contactus.jpg" alt="Signup icon" className="w-7 h-7 mr-1" />
             Contact Us
@@ -313,5 +314,6 @@ Join us today and take the first step towards a smarter, more efficient school m
     
     </main>
     </div>
+    
 );
 }

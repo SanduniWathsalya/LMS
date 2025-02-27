@@ -45,7 +45,7 @@ export default function RegisterPage() {
       const data = await response.json();
       if (response.ok && data.message === "Registration successful") {
         setSuccessMessage("Registration successful! Redirecting...");
-        setTimeout(() => router.push("/employeedashboard"), 2000);
+        setTimeout(() => router.push("/adminlogin"), 2000);
       } else {
         setErrorMessage(data.message || "Registration failed. Try again.");
       }
