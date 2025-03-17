@@ -3,56 +3,41 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function AdminloginPage() {
+export default function AdminLoginPage() {
+  const [formData, setFormData] = useState({ username: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
+
   const router = useRouter();
 
-  // Handle input change
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle login
-  const handleLogin = async () => {
-    setErrorMessage("");
-    setSuccessMessage("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    // Check if all fields are filled
     if (!formData.username || !formData.password) {
-      setErrorMessage("Please fill in both fields.");
+      setErrorMessage("Please fill all fields");
+      setSuccessMessage(""); // Clear success message
       return;
     }
 
-    try {
-      const response = await fetch("http://localhost/edupulse/admin_api/login.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: formData.username,
-          password: formData.password,
-        }),
-      });
+    const response = await fetch("http://localhost/eduPulse/admin_api/login.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-      const data = await response.json();
-      if (response.ok && data.message === "Login successful") {
-        setSuccessMessage("Login successful! Redirecting...");
-        setTimeout(() => router.push("/"), 2000);
-      } else {
-        setErrorMessage(data.message || "Login failed. Try again.");
-      }
-    } catch (error) {
-      setErrorMessage("Error: Unable to login.");
-      console.error("Fetch error:", error);
+    const result = await response.json();
+    if (result.success) {
+      setSuccessMessage("Login successful!");
+      setErrorMessage(""); // Clear error message
+      router.push("/admindashboard");
+    } else {
+      setErrorMessage(result.message || "Login failed!");
+      setSuccessMessage(""); // Clear success message
     }
   };
 
@@ -66,9 +51,11 @@ export default function AdminloginPage() {
           Enter your username and password to get started.
         </p>
 
-        <button className="bg-blue-500 text-white px-6 py-2 rounded font-semibold mb-3 shadow transform transition duration-300 hover:scale-110">
-          <Link href="/"> Get Started</Link>
-        </button>
+        <Link href="/">
+          <button className="bg-blue-500 text-white px-6 py-2 rounded font-semibold mb-3 shadow transform transition duration-300 hover:scale-110">
+            Go to Home
+          </button>
+        </Link>
 
         <img
           src="/images/loginpage.png"
@@ -90,7 +77,7 @@ export default function AdminloginPage() {
             name="username"
             placeholder="Username"
             value={formData.username}
-            onChange={handleInputChange}
+            onChange={handleChange}
             className="w-full p-3 border rounded mb-3 text-black"
           />
           <input
@@ -98,12 +85,12 @@ export default function AdminloginPage() {
             name="password"
             placeholder="Password"
             value={formData.password}
-            onChange={handleInputChange}
+            onChange={handleChange}
             className="w-full p-3 border rounded mb-3 text-black"
           />
         </div>
 
-        <button className="w-full bg-blue-500 text-white p-3 rounded" onClick={handleLogin}>
+        <button className="w-full bg-blue-500 text-white p-3 rounded" onClick={handleSubmit}>
           Login
         </button>
 
@@ -115,5 +102,3 @@ export default function AdminloginPage() {
     </div>
   );
 }
-
-

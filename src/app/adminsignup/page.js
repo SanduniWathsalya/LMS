@@ -1,9 +1,10 @@
 "use client";
+import Navbar from "../components/Navbar"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function RegisterPage() {
+export default function AdminSignPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [formData, setFormData] = useState({
@@ -11,52 +12,57 @@ export default function RegisterPage() {
     email: "",
     password: "",
   });
-
+  const [message, setMessage] = useState("");
   const router = useRouter();
 
-  // Handle input change
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle registration
-  const handleRegister = async () => {
-    setErrorMessage("");
-    setSuccessMessage("");
+  const validateEmail = (email) => {
+    // Basic email validation to check if it includes an "@" symbol and a period "."
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailRegex.test(email);
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Check if all fields are filled
     if (!formData.username || !formData.email || !formData.password) {
-      setErrorMessage("Please fill in all fields.");
+      setErrorMessage("Please fill all fields");
+      setSuccessMessage(""); // Clear success message
       return;
     }
 
-    try {
-      const response = await fetch("http://localhost/edupulse/admin_api/register.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+    // Check if the email is in a valid format
+    if (!validateEmail(formData.email)) {
+      setErrorMessage("Please enter a valid email address");
+      setSuccessMessage(""); // Clear success message
+      return;
+    }
 
-      const data = await response.json();
-      if (response.ok && data.message === "Registration successful") {
-        setSuccessMessage("Registration successful! Redirecting...");
-        setTimeout(() => router.push("/adminlogin"), 2000);
-      } else {
-        setErrorMessage(data.message || "Registration failed. Try again.");
-      }
-    } catch (error) {
-      setErrorMessage("Error: Unable to register.");
-      console.error("Fetch error:", error);
+    const response = await fetch("http://localhost/eduPulse/admin_api/register.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+    setMessage(result.message);
+    if (result.success) {
+      setSuccessMessage("Registration successful!");
+      setErrorMessage(""); // Clear error message
+      router.push("/adminlogin");
+    } else {
+      setErrorMessage(result.message || "Registration failed!");
+      setSuccessMessage(""); // Clear success message
     }
   };
 
   return (
-    <div className="h-screen flex">
+    <main>
+    <div className="h-screen flex ">
       <div className="w-2/3 bg-blue-50 flex flex-col justify-center items-center p-5">
         <h2 className="text-4xl text-blue-950 font-semibold mb-3 text-center">
           Become a Part of Our Team
@@ -66,7 +72,7 @@ export default function RegisterPage() {
         </p>
         <Link href="/">
           <button className="bg-blue-500 text-white px-6 py-2 rounded font-semibold mb-3 shadow transform transition duration-300 hover:scale-110">
-            Get Started
+            Go to Home
           </button>
         </Link>
 
@@ -90,7 +96,7 @@ export default function RegisterPage() {
             name="username"
             placeholder="Username"
             value={formData.username}
-            onChange={handleInputChange}
+            onChange={handleChange}
             className="w-full p-3 border rounded mb-3 text-black"
           />
           <input
@@ -98,7 +104,7 @@ export default function RegisterPage() {
             name="email"
             placeholder="Email"
             value={formData.email}
-            onChange={handleInputChange}
+            onChange={handleChange}
             className="w-full p-3 border rounded mb-3 text-black"
           />
           <input
@@ -106,12 +112,12 @@ export default function RegisterPage() {
             name="password"
             placeholder="Password"
             value={formData.password}
-            onChange={handleInputChange}
+            onChange={handleChange}
             className="w-full p-3 border rounded mb-3 text-black"
           />
         </div>
 
-        <button className="w-full bg-blue-500 text-white p-3 rounded" onClick={handleRegister}>
+        <button className="w-full bg-blue-500 text-white p-3 rounded" onClick={handleSubmit}>
           Register
         </button>
 
@@ -121,5 +127,6 @@ export default function RegisterPage() {
         </p>
       </div>
     </div>
+    </main>
   );
 }

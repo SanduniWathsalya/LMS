@@ -1,8 +1,46 @@
+"use client";
 import Navbar from './components/Navbar';
+import Footer from './components/footer';
 import Link from 'next/link';
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 
+const features = [
+  {
+    title: "Regular Updates & Support",
+    description:
+      "We add new and awesome features regularly to make our school administrative software unmatchable. Free online 24/7 support for users.",
+  },
+  {
+    title: "Real-time Notifications",
+    description:
+      "Stay up to date with instant notifications about important events, such as grade updates, class schedules, and announcements.",
+  },
+  {
+    title: "Attendance Tracking",
+    description:
+      "Easily manage student attendance with automated records and reports, making it easier for teachers and admins to track student presence.",
+  },
+];
 
+const rightFeatures = [
+  {
+    title: "Responsive Web Design",
+    description:
+      "You can use our student management system on any device, like Mobile, Tablet, Laptop, or desktop due to its responsive design.",
+  },
+  {
+    title: "Fast, Secure & Easy",
+    description:
+      "We use advanced tools and technologies to build up this free school software. It is super fast, secure, reliable, and easy to use and manage.",
+  },
+  {
+    title: "Personalized Dashboards",
+    description:
+      "Students, teachers, and administrators have access to personalized dashboards that show relevant information, like attendance, grades, and announcements.",
+  },
+];
 
 export default function Home() {
   return (
@@ -48,269 +86,301 @@ export default function Home() {
             className="w-[400px] h-[200px]   rounded-lg animate-fade"/>
           
           </div>  
-     
-     <div className="min-h-screen flex flex-col w-full justify-center bg-blue-500 mt-10 pb-20 ">
-  <h1 className="text-5xl text-center mt-56 justify-center font-bold text-white">Features of Our eduPulse System</h1>
-  <p className="text-[18px] text-center text-white mt-4 p-4 mx-auto max-w-6xl leading-relaxed">
-    eduPulse is an all-in-one platform designed to streamline the administration of educational institutions. It offers a comprehensive suite of features, including student registration, attendance tracking, grade management, and course scheduling. eduPulse simplifies communication between students, teachers, and parents while ensuring the efficient management of academic and administrative tasks.
-  </p>
 
-  <div className="flex justify-center gap-10">
-  {/* Left Section with Features */}
-  <div className="flex flex-col items-center mt-48 ml-10 space-y-12 w-1/3">
-    <div className="text-white text-center">
-      <h3 className="text-3xl font-bold">Regular Updates & Support</h3>
-      <p className="text-[15px] mt-4">
-      We add new and awesome features regularly to make our school administrative software unmatchable. Free online 24/7 support for users.
+
+{/*Start of features section*/} 
+<div className="min-h-screen flex flex-col w-full justify-center bg-blue-500 mt-10 pb-20">
+      <h1 className="text-5xl text-center mt-56 font-bold text-white">
+        Features of Our eduPulse System
+      </h1>
+      <p className="text-[18px] text-center text-white mt-4 p-4 mx-auto max-w-6xl leading-relaxed">
+        eduPulse is an all-in-one platform designed to streamline the
+        administration of educational institutions. It offers a comprehensive
+        suite of features, including student registration, attendance tracking,
+        grade management, and course scheduling. eduPulse simplifies
+        communication between students, teachers, and parents while ensuring the
+        efficient management of academic and administrative tasks.
       </p>
-    </div>
-    <div className="text-white text-center">
-      <h3 className="text-3xl font-bold">Real-time Notifications</h3>
-      <p className="text-[15px] mt-4">
-        Stay up to date with instant notifications about important events, such as grade updates, class schedules, and announcements.
-      </p>
-    </div>
-    <div className="text-white text-center">
-      <h3 className="text-3xl font-bold">Attendance Tracking</h3>
-      <p className="text-[15px] mt-4">
-        Easily manage student attendance with automated records and reports, making it easier for teachers and admins to track student presence.
-      </p>
-    </div>
-  </div>
 
-  {/* Center Section with Image */}
-  <div className="flex flex-col items-center mt-12 mr-5 justify-center w-1/3">
-    <img
-      src="/images/mobileview.jpg"
-      alt="eduPulse system"
-      className="w-[400px] h-[700px] rounded-lg "
-    />
-  </div>
+      <div className="flex justify-center gap-10">
+        {/* Left Section with Features */}
+        <div className="flex flex-col items-center mt-48 ml-10 space-y-12 w-1/3">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              className="text-white text-center"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl font-bold">{feature.title}</h3>
+              <p className="text-[15px] mt-4">{feature.description}</p>
+            </motion.div>
+          ))}
+        </div>
 
-  {/* Right Section with Features */}
-  <div className="flex flex-col items-center mt-48 mr-4 space-y-12 w-1/3">
-    <div className="text-white text-center">
-      <h3 className="text-3xl font-bold">Responsive Web Design</h3>
-      <p className="text-[15px] mt-4">
-        You can use our student management system on any device, like Mobile, Tablet, Laptop, or desktop due to its responsive design.
-      </p>
+        {/* Center Section with Image */}
+        <div className="flex flex-col items-center mt-12 mr-5 justify-center w-1/3">
+          <motion.img
+            src="/images/mobileview.jpg"
+            alt="eduPulse system"
+            className="w-[400px] h-[700px] rounded-lg"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            viewport={{ once: true }}
+          />
+        </div>
+
+        {/* Right Section with Features */}
+        <div className="flex flex-col items-center mt-48 mr-4 space-y-12 w-1/3">
+          {rightFeatures.map((feature, index) => (
+            <motion.div
+              key={index}
+              className="text-white text-center"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl font-bold">{feature.title}</h3>
+              <p className="text-[15px] mt-4">{feature.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </div>
-    <div className="text-white text-center">
-      <h3 className="text-3xl font-bold">Fast, Secure & Easy</h3>
-      <p className="text-[15px] mt-4">
-      We use advanced tools and technologies to build up this free school software. It is super fast, secure, reliable, and easy to use and manage.
-      </p>
+{/*End of features section*/}
+
+
+{/*Start of why choose us section*/}
+<div className="flex justify-between items-center min-h-screen bg-blue-950 px-12 space-x-8 w-full">
+      {/* Left Section: Heading and Paragraph */}
+      <motion.div
+        className="text-white w-1/2 ml-40"
+        initial={{ opacity: 0, x: -30 }} // Start from left with 0 opacity
+        whileInView={{ opacity: 1, x: 0 }} // Animate to original position
+        transition={{ duration: 1, ease: "easeOut" }} // Smooth transition
+        viewport={{ once: true }}
+      >
+        <h3 className="text-3xl font-bold">Why Choose Us</h3>
+        <p className="text-[15px] mt-4 leading-relaxed">
+          At the core of our student management system is a commitment to enhancing efficiency, transparency, and collaboration in educational institutions.
+          Our platform is designed with user-friendly interfaces, ensuring accessibility for students, teachers, and administrators alike. By integrating
+          cutting-edge technology, we provide tools that streamline administrative tasks, enable seamless communication, and offer actionable insights through
+          data analytics. With features like automated attendance tracking, real-time notifications, and responsive design, our system adapts to your institution's
+          unique needs. Choose us to empower your institution with a secure, reliable, and innovative solution that simplifies school management and fosters
+          academic excellence.
+        </p>
+      </motion.div>
+
+      {/* Right Section: Image */}
+      <motion.div
+        className="w-1/2 flex justify-center"
+        initial={{ opacity: 0 }} // Start with 0 opacity
+        whileInView={{ opacity: 1 }} // Fade in when in view
+        transition={{ duration: 4, ease: "easeOut" }} // Smooth transition
+        viewport={{ once: true }}
+      >
+        <img src="/images/whychooseus.jpg" alt="Why Choose Us" className="w-[700px] h-[400px] rounded-lg" />
+      </motion.div>
     </div>
-    <div className="text-white text-center">
-      <h3 className="text-3xl font-bold">Personalized Dashboards</h3>
-      <p className="text-[15px] mt-4">
-      Students, teachers, and administrators have access to personalized dashboards that show relevant information, like attendance, grades, and announcements.
-      </p>
+{/*End of why choose us section*/}
+
+{/*Start of separate portals section*/}
+<div className="bg-blue-950 flex flex-col items-center justify-center">
+      {/* Heading and Paragraph Section */}
+      <motion.div
+        className="text-center"
+        initial={{ opacity: 0, y: 100 }} // Start from bottom with 0 opacity
+        whileInView={{ opacity: 1, y: 0 }} // Animate to original position
+        transition={{ duration: 1, ease: "easeOut" }} // Smooth transition
+        viewport={{ once: true }}
+      >
+        <h1 className="text-3xl font-bold text-white">Separate Portals Available</h1>
+        <p className="text-[15px] text-white w-[600px] mt-4 mx-auto max-w-6xl leading-relaxed">
+          Our student management system offers dedicated portals for principals, teachers, and administrators, ensuring a tailored experience for each user type.
+          Teachers can manage class schedules, track attendance, and monitor student progress. Administrators have full control over system settings, user management, and report generation.
+        </p>
+      </motion.div>
+
+      {/* Image Section */}
+      <motion.div
+        className="flex justify-center mt-8"
+        initial={{ opacity: 0, y: 100 }} // Start from bottom with 0 opacity
+        whileInView={{ opacity: 1, y: 0 }} // Animate to original position
+        transition={{ duration: 1.2, ease: "easeOut" }} // Slight delay for a staggered effect
+        viewport={{ once: true }}
+      >
+        <img src="/images/team.jpg" alt="team" className="w-[500px] h-[600px] rounded-lg" />
+      </motion.div>
     </div>
-  </div>
-</div>
-</div>
+  {/*End of separate portals section*/}
 
-<div className="flex justify-between items-center min-h-screen bg-blue-950 px-12 space-x-8">
-  {/* Left Section: Heading and Paragraph */}
-  <div className="text-white w-1/2 ml-40">
-    <h3 className="text-3xl font-bold">Why Choose Us</h3>
-    <p className="text-[15px] mt-4 leading-relaxed">
-      At the core of our student management system is a commitment to enhancing efficiency, transparency, and collaboration in educational institutions. 
-      Our platform is designed with user-friendly interfaces, ensuring accessibility for students, teachers, and administrators alike. By integrating 
-      cutting-edge technology, we provide tools that streamline administrative tasks, enable seamless communication, and offer actionable insights through 
-      data analytics. With features like automated attendance tracking, real-time notifications, and responsive design, our system adapts to your institution's 
-      unique needs. Choose us to empower your institution with a secure, reliable, and innovative solution that simplifies school management and fosters 
-      academic excellence.
-    </p>
-  </div>
 
-  {/* Right Section: Image */}
-  <div className="w-1/2 flex justify-center">
-    <img
-      src="/images/whychooseus.jpg"
-      alt="Why Choose Us"
-      className="w-[700px] h-[400px] rounded-lg "
-    />
-  </div>
-</div>
-
-<div className=" flex flex-col  justify-center bg-blue-950">
-  <h1 className="text-3xl text-center justify-center font-bold text-white ">Separate Portals Available</h1>
-  <p className="text-[15px] text-center text-white w-[600px] mt-4 mx-auto max-w-6xl leading-relaxed">
-  Our student management system offers dedicated portals for principals ,teachers, and administrators, ensuring a tailored experience for each user type.Teachers can manage class schedules, track attendance, and monitor student progress. Administrators have full control over system settings, user management, and report generation.
-</p>
-</div>
-<div className=" flex justify-center bg-blue-950">
-    <img
-      src="/images/team.jpg"
-      alt="team"
-      className="w-[500px] h-[600px] rounded-lg "
-    />
-  </div>
-
+ {/*start of messaging system section*/}
   <div className="flex justify-between items-center bg-blue-950 px-12 space-x-8">
   {/* Left Section: Heading and Paragraph */}
-  <div className="text-white w-1/2 ml-40">
+  <motion.div
+    className="text-white w-1/2 ml-40"
+    initial={{ opacity: 0, x: -30 }} // Start from left with 0 opacity
+    whileInView={{ opacity: 1, x: 0 }} // Animate to original position
+    transition={{ duration: 1, ease: "easeOut" }} // Smooth transition
+    viewport={{ once: true }}
+  >
     <h3 className="text-3xl text-center font-bold">Messaging System</h3>
     <p className="text-[15px] mt-4  leading-relaxed">
     Discuss and share ideas with other users through our messaging system. With this feature, you can do real-time chat with every individual associated with your institution.
     </p>
-  </div>
+    </motion.div>
 
   {/* Right Section: Image */}
-  <div className="w-1/2 flex justify-center">
-    <img
+  <motion.div
+        className="w-1/2 flex justify-center"
+        initial={{ opacity: 0 }} // Start with 0 opacity
+        whileInView={{ opacity: 1 }} // Fade in when in view
+        transition={{ duration: 4, ease: "easeOut" }} // Smooth transition
+        viewport={{ once: true }}
+  >
+      <img
       src="/images/messaging.jpg"
       alt="Why Choose Us"
       className="w-[600px] h-[400px] rounded-lg "
     />
-  </div>
+   </motion.div>
 </div>
+ {/*End of messaging system section*/}
 
+
+ {/*Start of empowering educators section*/}
 <div className="flex justify-between items-center  bg-blue-950 px-12 space-x-8">
   {/* Left Section:Dashboard Image*/}
-  <div className="w-1/2 flex justify-center">
+  <motion.div
+        className="w-1/2 flex justify-center"
+        initial={{ opacity: 0 }} // Start with 0 opacity
+        whileInView={{ opacity: 1 }} // Fade in when in view
+        transition={{ duration: 4, ease: "easeOut" }} // Smooth transition
+        viewport={{ once: true }}
+  >
     <img
       src="/images/attendence.jpg"
       alt="Why Choose Us"
       className="w-[700px] h-[400px] rounded-lg "
     />
-  </div>
+  </motion.div>
 
   {/* Right Section: Heading and Paragraph */}
-  <div className="text-white  w-1/2 ml-40">
+  <motion.div 
+   className="text-white w-1/2 ml-40"
+   initial={{ opacity: 0, x: 30 }} // Start from right with 0 opacity
+   whileInView={{ opacity: 1, x: 0 }} // Animate to original position
+   transition={{ duration: 1, ease: "easeOut" }} // Smooth transition
+   viewport={{ once: true }}
+ >
     <h3 className="text-3xl text-center font-bold">Empowering Educators with Insights</h3>
     <p className="text-[15px] text-center mt-4 leading-relaxed">
     Stay ahead with real-time access to student performance! Our system provides teachers with a seamless way to view attendance records and academic marks, helping them track progress, identify trends, and support students effectively. It's a smart tool to ensure every student reaches their potential.
     </p>
-  </div>
+    </motion.div>
 </div>
+{/*End of empowering educators section*/}
 
 
+{/*Start of genarate reports section*/}
   <div className="flex justify-between items-center bg-blue-950 px-12 space-x-8">
   {/* Left Section:Heading and Para*/}
-  <div className="text-white mt-10 w-1/2 ml-40">
+  <motion.div 
+ className="text-white w-1/2 ml-40"
+ initial={{ opacity: 0, x: -30 }} // Start from left with 0 opacity
+ whileInView={{ opacity: 1, x: 0 }} // Animate to original position
+ transition={{ duration: 1, ease: "easeOut" }} // Smooth transition
+ viewport={{ once: true }}
+>
     <h3 className="text-3xl text-center font-bold">Genarate Reports</h3>
     <p className="text-[15px] text-center mt-4 leading-relaxed">
     Our system allows educators and administrators to effortlessly generate comprehensive reports on student performance, attendance, and more. With just a few clicks, you can create customized reports that provide deep insights, making it easier to analyze trends, monitor progress, and make informed decisions.
     </p>
-  </div>
+  </motion.div>
 
 
   {/* Right Section: reports image */}
-  <div className="w-1/2 flex justify-center bg-blue-950">
+    <motion.div
+        className="w-1/2 flex justify-center"
+        initial={{ opacity: 0 }} // Start with 0 opacity
+        whileInView={{ opacity: 1 }} // Fade in when in view
+        transition={{ duration: 4, ease: "easeOut" }} // Smooth transition
+        viewport={{ once: true }}
+  >
     <img
       src="/images/reports.png"
       alt="Why Choose Us"
       className="w-[400px] h-[400px]  rounded-lg "
     />
-  </div>
+    </motion.div>
 </div>
+{/*End of empowering educators section*/}
 
-<div className=" flex flex-col w-full h-[500px] justify-center bg-blue-500 mt-10   ">
-  <h1 className="text-3xl text-center mt-26 justify-center font-bold text-white">All features in one place</h1>
-  <p className="text-[18px] text-center text-white mt-4 p-4 mx-auto max-w-6xl leading-relaxed">
- We are eduPulse, the ultimate student management system designed to simplify school operations and empower educators, 
-and administrators.Stay connected with us, and explore how our platform can help you streamline student management 
-effortlessly. Whether you're a teacher, principal, or administrator, eduPulse provides a dedicated portal for everyone.<br/><br/> 
-Join us today and take the first step towards a smarter, more efficient school management experience! 
-</p>
-<div className="flex space-x-12 mt-6 justify-center ">
-      <Link href="/registerroles" className = "text-white hover:text-blue-700 ">
-      <button className="flex items-center px-4 py-2 bg-gray-200 text-blue-500 font-semibold rounded-full shadow transform transition duration-300 hover:scale-110">
-      <img src="/images/signup.jpg" alt="Signup icon" className="w-7 h-7 mr-1" />
-           Sign Up now
-      </button></Link>
+{/*Start of all features in one place section*/}
+<div className="flex flex-col w-full h-[500px] justify-center bg-blue-500 mt-10">
+      {/* Heading Animation */}
+      <motion.h1
+        className="text-3xl text-center font-bold text-white"
+        initial={{ opacity: 0, y: -50 }} // Start faded out and slightly above
+        whileInView={{ opacity: 1, y: 0 }} // Fade in and move to original position
+        exit={{ opacity: 0, y: -50 }} // Fade out and move up when leaving
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
+        All features in one place
+      </motion.h1>
 
-      <Link href="/contactus" className = "text-white hover:text-blue-700 ">
-      <button className="flex items-center px-4 py-2 bg-gray-200 text-blue-500 font-semibold rounded-full shadow transform transition duration-300 hover:scale-110">
-      <img src="/images/contactus.jpg" alt="Signup icon" className="w-7 h-7 mr-1" />
+      {/* Paragraph Animation */}
+      <motion.p
+        className="text-[18px] text-center text-white mt-4 p-4 mx-auto max-w-6xl leading-relaxed"
+        initial={{ opacity: 0, y: 50 }} // Start faded out and below
+        whileInView={{ opacity: 1, y: 0 }} // Fade in and move up
+        transition={{ duration: 1, ease: "easeOut", delay: 0.3 }} // Delay for staggered effect
+        viewport={{ once: true }}
+      >
+        We are eduPulse, the ultimate student management system designed to simplify school operations and empower educators, 
+        and administrators. Stay connected with us, and explore how our platform can help you streamline student management 
+        effortlessly. Whether you're a teacher, principal, or administrator, eduPulse provides a dedicated portal for everyone.
+        <br /><br /> 
+        Join us today and take the first step towards a smarter, more efficient school management experience!
+      </motion.p>
+
+      {/* Buttons Animation */}
+      <motion.div
+        className="flex space-x-12 mt-6 justify-center"
+        initial={{ opacity: 0, y: 30 }} // Start faded out and slightly below
+        whileInView={{ opacity: 1, y: 0 }} // Fade in and move up
+        transition={{ duration: 1, ease: "easeOut", delay: 0.5 }} // Slight delay for natural flow
+        viewport={{ once: true }}
+      >
+        {/* Sign Up Button */}
+        <Link href="/registerroles" className="text-white hover:text-blue-700">
+          <button className="flex items-center px-4 py-2 bg-gray-200 text-blue-500 font-semibold rounded-full shadow transform transition duration-300 hover:scale-110">
+            <img src="/images/signup.jpg" alt="Signup icon" className="w-7 h-7 mr-1" />
+            Sign Up now
+          </button>
+        </Link>
+
+        {/* Contact Us Button */}
+        <Link href="/contactus" className="text-white hover:text-blue-700">
+          <button className="flex items-center px-4 py-2 bg-gray-200 text-blue-500 font-semibold rounded-full shadow transform transition duration-300 hover:scale-110">
+            <img src="/images/contactus.jpg" alt="Contact icon" className="w-7 h-7 mr-1" />
             Contact Us
-      </button></Link>
-       </div>
-</div>
+          </button>
+        </Link>
+      </motion.div>
+    </div>
+{/*End of all features in one place section*/}
 
 
 {/*Footer*/}
-    <footer className="bg-gray-900 w-full text-white py-8 ">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* First Column */}
-        <div>
-          <h2 className="text-2xl font-bold mb-4">eduPulse</h2>
-          <p className="text-sm">
-          eduPulse is the world's best student management system. 
-          Our student management system has more features than any student management system in the market.
-          Your satisfaction is our priority.
-          </p>
-        </div>
-
-        {/* Second Column */}
-        <div>
-  <h2 className="text-lg font-bold mb-4">Navigations</h2>
-  <ul className="space-y-2">
-    <li>
-      <a href="/signup" className="hover:underline">
-        Signup
-      </a>
-    </li>
-    <li>
-      <a href="/login" className="hover:underline">
-        Login
-      </a>
-    </li>
-    <li>
-      <a href="/contact" className="hover:underline">
-        Contact Us
-      </a>
-    </li>
-  </ul>
-</div>
-
-
-        {/* Third Column */}
-        <div>
-          <h2 className="text-lg font-bold mb-4">Follow Us</h2>
-          <div className="flex space-x-4">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-500"
-            >
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-400"
-            >
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-pink-500"
-            >
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-700"
-            >
-              <i className="fab fa-linkedin-in"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="mt-8 text-center text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} eduPulse. All rights reserved.
-      </div>
-    </footer>
+<Footer/>
+   
     
     </main>
     </div>

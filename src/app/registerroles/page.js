@@ -15,41 +15,45 @@ const RegisterForm = ({ setIsLogin }) => {
     if (!fullName || !email || !password || !confirmPassword || !role) {
       setErrorMessage('Please fill in all fields.');
       setMessage('');
-    } else if (password !== confirmPassword) {
+      return;
+    }
+    
+    if (password !== confirmPassword) {
       setErrorMessage('Passwords do not match.');
       setMessage('');
-    } else {
-      const userData = {
-        fullName,
-        email,
-        password,
-        confirmPassword,
-        role,
-      };
+      return;
+    }
   
-      try {
-        const response = await fetch('http://127.0.0.1:5000/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(userData),
-        });
+    const userData = {
+      fullName,
+      email,
+      password,
+      role,
+    };
   
-        const data = await response.json();
-        if (response.ok) {
-          setMessage(data.message);
-          setErrorMessage('');
-        } else {
-          setErrorMessage(data.message);
-          setMessage('');
-        }
-      } catch (error) {
-        setErrorMessage('Failed to connect to the server. Please try again.');
+    try {
+      const response = await fetch('http://localhost/edupulse/roles_api/roles_register.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        setMessage(data.message);
+        setErrorMessage('');
+      } else {
+        setErrorMessage(data.message);
         setMessage('');
       }
+    } catch (error) {
+      setErrorMessage('Failed to connect to the server. Please try again.');
+      setMessage('');
     }
   };
+  
   
   return (
     <div className="min-h-screen flex">
@@ -57,7 +61,7 @@ const RegisterForm = ({ setIsLogin }) => {
       <div className="w-1/3 bg-blue-950 text-white flex flex-col items-center justify-center p-10">
         <h1 className="text-5xl text-white font-bold mb-6">eduPulse</h1>
 
-        <p className="mb-4 text-gray-400 cursor-pointer hover:underline hover:text-white transition-all duration-300 transition-all duration-300 transform  hover:scale-110">
+        <p className="mb-4 text-gray-400 cursor-pointer hover:underline hover:text-white  transition-all duration-300 transform  hover:scale-110">
           <Link href="/loginroles">Already have an account?</Link>
         </p>
 

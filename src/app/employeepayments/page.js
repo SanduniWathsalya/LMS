@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Sidebar from "../components/sidebar";
+import Sidebar from "../components/employee_sidebar";
 
 const EmployeePayments = () => {
   const [students, setStudents] = useState([]);

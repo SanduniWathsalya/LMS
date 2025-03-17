@@ -1,16 +1,21 @@
 "use client"
 import Navbar from '../components/Navbar';
+import Footer from '../components/footer';
+
+
 
 const ContactUs = () => {
  
 
   return (
+    <main>
     <div>
+     
     <Navbar/>
-    <div className=" flex flex-col md:flex-row justify-between p-6 space-y-6 md:space-y-0">
+    <div className=" flex flex-col md:flex-row justify-between p-6 mt-20 space-y-6 md:space-y-0">
 
       {/* Contact Form */}
-      <div className="bg-[#D4D2F6] p-6 rounded-lg w-full mt-20 md:w-[500px]">
+      <div className="bg-[#D4D2F6] p-6 rounded-lg w-full  md:w-[500px]">
         <h2 className="text-2xl text-black font-bold mb-4">Contact Us</h2>
         
         <form >
@@ -53,9 +58,9 @@ const ContactUs = () => {
       </div>
 
       {/* Contact Details */}
-      <div className="bg-[#D4D2F6] p-6 rounded-lg w-full mt-20 md:w-[800px]">
+      <div className="bg-[#D4D2F6] p-6 rounded-lg w-full  md:w-[800px]">
         <div className="space-y-4 text-black text-center font-bold">
-          <div className="flex items-center mt-20 space-x-2 justify-center">
+          <div className="flex items-center  space-x-2 justify-center">
     
             <p>Institute of Alexandria, Sri Jayawardenepura Kotte</p>
           </div>
@@ -78,7 +83,12 @@ const ContactUs = () => {
         </div>
       </div>
     </div>
+
+    
     </div>
+    
+    </main>
+   
   );
 };
 

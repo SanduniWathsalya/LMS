@@ -53,7 +53,7 @@ export default function loginroles() {
         router.push("/teacher-dashboard");
         break;
       case "Employee":
-        router.push("/employee-dashboard");
+        router.push("/employeedashboard");
         break;
       default:
         alert("Invalid role selected");
@@ -141,7 +141,7 @@ export default function loginroles() {
           Manage your users and resources effectively with eduPulse.
         </p>
         <button className="bg-blue-500 text-white px-6 py-2 rounded font-semibold  mb-3 shadow transform transition duration-300 hover:scale-110">
-       <Link href="/"> Get Started</Link>
+       <Link href="/"> Go to Home Page</Link>
         </button>
         <img
           src="/images/team.jpg"

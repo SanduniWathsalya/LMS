@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import Sidebar from "../components/employee_sidebar";
-import AttendanceChart from "../components/AttendanceChart";
+import Sidebar from "../components/admin_sidebar";
+
 
 const Dashboard = () => {
   return (
@@ -90,17 +90,7 @@ const Dashboard = () => {
         </div>
     </div>
 
-     {/*User Activity*/}
-     <div className="flex justify-between gap-20 sm:grid-cols-3  w-full h-auto ">
-  {/* User Activity Section */}
-  <div className="bg-white mt-5 flex-[2] justify-between min-w-[1000px] border rounded-sm overflow-hidden shadow">
-    <h1 className="text-xl font-bold text-center text-black mt-5">Student Attendence</h1>
-    <AttendanceChart />
-  </div>
     
-
- 
-</div>
  
     
   </div>
