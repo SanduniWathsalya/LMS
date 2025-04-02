@@ -39,7 +39,7 @@ const Sidebar = () => {
         } md:translate-x-0 md:relative`}
       >
         <Link href="/">
-          <h2 className="text-2xl font-semibold text-center text-white mb-6">Edupulse</h2>
+          <h2 className="text-2xl font-semibold text-center text-white mb-6">Welcome</h2>
         </Link>
 
         <nav className="flex flex-col gap-4">

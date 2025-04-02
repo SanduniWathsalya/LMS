@@ -1,52 +1,52 @@
 "use client";
-import Navbar from './components/Navbar';
-import Footer from './components/footer';
-import Link from 'next/link';
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Link from 'next/link';
+import { UserCircleIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
 
-
-const features = [
+const leftFeatures = [
   {
-    title: "Regular Updates & Support",
-    description:
-      "We add new and awesome features regularly to make our school administrative software unmatchable. Free online 24/7 support for users.",
+    title: "Smart Updates & Support",
+    icon: "🔄",
+    content: "Continuous innovation with regular feature updates complemented by 24/7 expert support",
   },
   {
-    title: "Real-time Notifications",
-    description:
-      "Stay up to date with instant notifications about important events, such as grade updates, class schedules, and announcements.",
+    title: "Live Activity Tracking",
+    icon: "🔔",
+    content: "Instant alerts for grades, schedules, and announcements with real-time push notifications",
   },
   {
-    title: "Attendance Tracking",
-    description:
-      "Easily manage student attendance with automated records and reports, making it easier for teachers and admins to track student presence.",
+    title: "AI-Powered Insights",
+    icon: "📊",
+    content: "Advanced analytics transform attendance data into actionable educational strategies",
   },
 ];
 
 const rightFeatures = [
   {
-    title: "Responsive Web Design",
-    description:
-      "You can use our student management system on any device, like Mobile, Tablet, Laptop, or desktop due to its responsive design.",
+    title: "Omni-Device Access",
+    icon: "📱",
+    content: "Universal compatibility across all devices with adaptive responsive design",
   },
   {
-    title: "Fast, Secure & Easy",
-    description:
-      "We use advanced tools and technologies to build up this free school software. It is super fast, secure, reliable, and easy to use and manage.",
+    title: "Military-Grade Security",
+    icon: "🛡️",
+    content: "Enterprise-level encryption ensuring bulletproof data protection and privacy",
   },
   {
-    title: "Personalized Dashboards",
-    description:
-      "Students, teachers, and administrators have access to personalized dashboards that show relevant information, like attendance, grades, and announcements.",
+    title: "Custom Intelligence",
+    icon: "🎯",
+    content: "AI-driven personalized dashboards with smart recommendations and insights",
   },
 ];
+
 
 export default function Home() {
   return (
     <div>
-      <Navbar/>
+      
       <main className="min-h-screen flex flex-col justify-start">
+  <div>   
       <div className="">   
       <div className="area">
 			<ul className="circles">
@@ -63,324 +63,585 @@ export default function Home() {
 			</ul>
 		</div>
     </div> 
-      <h1 className="text-7xl text-center mt-28 font-bold  text-white leading-snug">Best Online <br/>Student Management System</h1>
-      <p className='text-1xl text-center   text-gray-400 mt-4'>Now you can manage your school, college, or any educational center with eduPulse. Your data's security is our top priority.</p>
-    
-      <div className="flex space-x-5 items-center justify-center ">
-      <Link href="/contactus" className = "text-white hover:text-blue-700 ">
-      <button className="flex items-center mt-5 px-4 py-2 bg-blue-500 text-white font-semibold rounded shadow hover:bg-blue-400 hover:scale-105 hover:opacity-80 transition-transform transition-opacity duration-300">
-           <img src="/images/contactus.jpg" alt="icon" className="w-8 h-8 mr-3  " /> 
-           Contact Us
-      </button></Link>
+    <div className="flex flex-col md:flex-row items-center justify-between mt-28 max-w-6xl mx-auto px-6">
+  {/* Left Side - Content Section */}
+  <div className="md:w-1/2">
+    <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 animate-gradient-shine">
+      <span className="block mb-4">Best Online</span>
+      <span className="text-white drop-shadow-[0_2px_4px_rgba(56,189,248,0.4)]">
+        Student Management System
+      </span>
+    </h1>
 
-      <Link href="/register" className = "text-white hover:text-blue-700 ">
-      <button className="flex items-center mt-5 px-4 py-2  bg-transparent border border-white font-semibold rounded shadow hover:bg-blue-400 hover:scale-105 hover:opacity-80 transition-transform transition-opacity duration-300">
-            <img src="/images/arrow2.jpg" alt="icon" className="w-8 h-8 mr-3 " /> 
-                Learn More
-      </button></Link>
-       </div>
-       <div className="flex  items-center mt-2 justify-center ">
-       <img 
-            src="/images/hero.jpg"
-            alt="Hero"
-            className="w-[400px] h-[200px]   rounded-lg animate-fade"/>
-          
-          </div>  
+    <p className="text-lg md:text-xl text-gray-200 mt-6 leading-relaxed">
+      Now you can manage your school, college, or any educational center with 
+      <span className="font-semibold text-blue-300"> eduPulse</span>.
+    </p>
+    <p className="mt-3 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent font-medium">
+      Your data's security is our top priority.
+    </p>
 
-
-{/*Start of features section*/} 
-<div className="min-h-screen flex flex-col w-full justify-center bg-blue-500 mt-10 pb-20">
-      <h1 className="text-5xl text-center mt-56 font-bold text-white">
-        Features of Our eduPulse System
-      </h1>
-      <p className="text-[18px] text-center text-white mt-4 p-4 mx-auto max-w-6xl leading-relaxed">
-        eduPulse is an all-in-one platform designed to streamline the
-        administration of educational institutions. It offers a comprehensive
-        suite of features, including student registration, attendance tracking,
-        grade management, and course scheduling. eduPulse simplifies
-        communication between students, teachers, and parents while ensuring the
-        efficient management of academic and administrative tasks.
-      </p>
-
-      <div className="flex justify-center gap-10">
-        {/* Left Section with Features */}
-        <div className="flex flex-col items-center mt-48 ml-10 space-y-12 w-1/3">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              className="text-white text-center"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-3xl font-bold">{feature.title}</h3>
-              <p className="text-[15px] mt-4">{feature.description}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Center Section with Image */}
-        <div className="flex flex-col items-center mt-12 mr-5 justify-center w-1/3">
-          <motion.img
-            src="/images/mobileview.jpg"
-            alt="eduPulse system"
-            className="w-[400px] h-[700px] rounded-lg"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            viewport={{ once: true }}
+    {/* Buttons */}
+    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start mt-8">
+      <Link href="/contactus" className="group relative inline-block">
+        <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 opacity-75 blur transition-all duration-300 group-hover:opacity-100"></div>
+        <button className="relative flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+          <img 
+            src="/images/contactus.jpg" 
+            alt="Contact icon" 
+            className="w-6 h-6 mr-3 filter brightness-0 invert transition-transform group-hover:rotate-12" 
           />
-        </div>
+          <span className="relative">Contact Us</span>
+        </button>
+      </Link>
 
-        {/* Right Section with Features */}
-        <div className="flex flex-col items-center mt-48 mr-4 space-y-12 w-1/3">
-          {rightFeatures.map((feature, index) => (
+      <Link href="/register" className="group relative inline-block">
+        <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-gray-700 to-gray-900 opacity-75 blur transition-all duration-300 group-hover:opacity-100"></div>
+        <button className="relative flex items-center px-6 py-3 bg-gray-800/50 backdrop-blur-sm border border-gray-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-[1.02] hover:border-cyan-400 hover:shadow-xl">
+          <img 
+            src="/images/arrow2.jpg" 
+            alt="Learn more arrow" 
+            className="w-6 h-6 mr-3 filter brightness-0 invert transition-transform group-hover:translate-x-1" 
+          />
+          <span className="relative">Explore Features</span>
+        </button>
+      </Link>
+    </div>
+  </div>
+
+  {/* Right Side - Image Section */}
+  <div className="md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0">
+    <img 
+      src="/images/world.jpg"
+      alt="Hero"
+      className="w-[1200px] h-[400px] rounded-lg animate-fade"
+    />
+  </div>
+</div>
+
+          </div>     
+
+
+          
+          <div className="min-h-screen flex flex-col w-full justify-center bg-gradient-to-br from-blue-600 to-blue-400 mt-10 pb-20">
+  <div className="animate-fade-in">
+    <h1 className="text-5xl text-center mt-20 font-bold text-white drop-shadow-md">
+      Transform Your Institution with
+      <span className="block mt-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-100">
+        eduPulse System
+      </span>
+    </h1>
+    <p className="text-lg text-center text-white mt-6 px-4 md:px-6 mx-auto max-w-4xl leading-relaxed opacity-90">
+      Revolutionize educational management through our all-in-one platform designed to streamline administration, 
+      enhance communication, and empower academic excellence.
+    </p>
+  </div>
+
+  {/* Feature Section */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-8 mt-16">
+      {/* Left Features */}
+      <motion.div
+        className="flex flex-col items-center space-y-10"
+        initial="hidden"
+        whileInView="visible"
+        transition={{ staggerChildren: 0.15 }} // Faster stagger effect
+      >
+        {leftFeatures.map((feature, index) => (
+          <motion.div
+            key={index}
+            className="feature-card p-6 rounded-2xl bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+            initial={{ opacity: 0, y: 80 }} // Moves from further down
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }} // Fast and smooth
+           
+          >
+            <div className="text-4xl mb-4">{feature.icon}</div>
+            <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
+            <p className="text-md opacity-90">{feature.content}</p>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Center Image */}
+      <motion.div
+        className="flex justify-center items-center relative my-8 md:my-0"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+       
+      >
+        <div className="absolute inset-0 bg-white/20 rounded-full blur-3xl -z-10"></div>
+        <img
+          src="/images/centerimage.jpg"
+          alt="eduPulse interface"
+          className="w-100 rounded-2xl transform transition-transform duration-300"
+        />
+      </motion.div>
+
+      {/* Right Features */}
+      <motion.div
+        className="flex flex-col items-center space-y-10"
+        initial="hidden"
+        whileInView="visible"
+        transition={{ staggerChildren: 0.15 }}
+      >
+        {rightFeatures.map((feature, index) => (
+          <motion.div
+            key={index}
+            className="feature-card p-6 rounded-2xl bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          
+          >
+            <div className="text-4xl mb-4">{feature.icon}</div>
+            <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
+            <p className="text-md opacity-90">{feature.content}</p>
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
+</div>
+
+
+
+
+<div className="flex flex-col lg:flex-row items-center min-h-screen bg-gradient-to-br from-blue-900 to-blue-950 px-4 lg:px-20 gap-12 py-20">
+      {/* Left Section */}
+      <div
+        className="relative lg:w-1/2 lg:ml-20 space-y-8"
+        
+      >
+        {/* Title Fade-In */}
+        <motion.div
+          className="border-l-4 border-cyan-400 pl-6"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h3 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-white bg-clip-text text-transparent">
+            Why Choose Our Platform
+          </h3>
+        </motion.div>
+
+        {/* Paragraph Swipe from Left */}
+        <motion.p
+          className="text-lg leading-relaxed text-blue-100/90"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          Revolutionizing educational management through innovative technology solutions:
+        </motion.p>
+
+        {/* Feature Cards - Moving Up One by One */}
+        <motion.div className="space-y-4">
+          {[
+            {
+              title: "All-in-One Management",
+              content:
+                "Comprehensive tools for attendance, grading, scheduling, and communication in a single integrated platform.",
+            },
+            {
+              title: "Smart Automation",
+              content:
+                "AI-powered insights and automated workflows that save administrators 20+ hours monthly.",
+            },
+            {
+              title: "Enterprise Security",
+              content:
+                "Military-grade encryption and GDPR compliance ensuring complete data protection.",
+            },
+          ].map((feature, index) => (
             <motion.div
               key={index}
-              className="text-white text-center"
+              className="p-4 rounded-xl bg-white/5 border border-white/10"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.2 }}
+             
             >
-              <h3 className="text-3xl font-bold">{feature.title}</h3>
-              <p className="text-[15px] mt-4">{feature.description}</p>
+              <h4 className="text-cyan-400 font-semibold mb-2">{feature.title}</h4>
+              <p className="text-sm">{feature.content}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Button */}
+        <motion.button
+          className="bg-cyan-400 text-blue-950 px-6 py-3 rounded-lg font-semibold
+            hover:bg-cyan-300 transition-colors duration-300"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
+        >
+          Schedule Demo
+        </motion.button>
       </div>
-    </div>
-{/*End of features section*/}
 
-
-{/*Start of why choose us section*/}
-<div className="flex justify-between items-center min-h-screen bg-blue-950 px-12 space-x-8 w-full">
-      {/* Left Section: Heading and Paragraph */}
+      {/* Right Section - Image */}
       <motion.div
-        className="text-white w-1/2 ml-40"
-        initial={{ opacity: 0, x: -30 }} // Start from left with 0 opacity
-        whileInView={{ opacity: 1, x: 0 }} // Animate to original position
-        transition={{ duration: 1, ease: "easeOut" }} // Smooth transition
-        viewport={{ once: true }}
+        className="lg:w-1/2 flex justify-center"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+       
       >
-        <h3 className="text-3xl font-bold">Why Choose Us</h3>
-        <p className="text-[15px] mt-4 leading-relaxed">
-          At the core of our student management system is a commitment to enhancing efficiency, transparency, and collaboration in educational institutions.
-          Our platform is designed with user-friendly interfaces, ensuring accessibility for students, teachers, and administrators alike. By integrating
-          cutting-edge technology, we provide tools that streamline administrative tasks, enable seamless communication, and offer actionable insights through
-          data analytics. With features like automated attendance tracking, real-time notifications, and responsive design, our system adapts to your institution's
-          unique needs. Choose us to empower your institution with a secure, reliable, and innovative solution that simplifies school management and fosters
-          academic excellence.
-        </p>
-      </motion.div>
-
-      {/* Right Section: Image */}
-      <motion.div
-        className="w-1/2 flex justify-center"
-        initial={{ opacity: 0 }} // Start with 0 opacity
-        whileInView={{ opacity: 1 }} // Fade in when in view
-        transition={{ duration: 4, ease: "easeOut" }} // Smooth transition
-        viewport={{ once: true }}
-      >
-        <img src="/images/whychooseus.jpg" alt="Why Choose Us" className="w-[700px] h-[400px] rounded-lg" />
+        <div className="relative rounded-2xl overflow-hidden border-2 border-white/10 shadow-xl w-full max-w-2xl">
+          <img
+            src="/images/whychooseus.jpg"
+            alt="Education Platform Interface"
+            className="w-full h-[500px] object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-blue-950/60 to-transparent" />
+        </div>
       </motion.div>
     </div>
-{/*End of why choose us section*/}
 
-{/*Start of separate portals section*/}
-<div className="bg-blue-950 flex flex-col items-center justify-center">
-      {/* Heading and Paragraph Section */}
-      <motion.div
-        className="text-center"
-        initial={{ opacity: 0, y: 100 }} // Start from bottom with 0 opacity
-        whileInView={{ opacity: 1, y: 0 }} // Animate to original position
-        transition={{ duration: 1, ease: "easeOut" }} // Smooth transition
-        viewport={{ once: true }}
-      >
-        <h1 className="text-3xl font-bold text-white">Separate Portals Available</h1>
-        <p className="text-[15px] text-white w-[600px] mt-4 mx-auto max-w-6xl leading-relaxed">
-          Our student management system offers dedicated portals for principals, teachers, and administrators, ensuring a tailored experience for each user type.
-          Teachers can manage class schedules, track attendance, and monitor student progress. Administrators have full control over system settings, user management, and report generation.
-        </p>
-      </motion.div>
+
+
+<div className="bg-blue-950 text-white">
+  {/* Hero Section */}
+  <section className="container mx-auto px-4 py-16 md:py-24">
+      {/* Title and Paragraph Section */}
+      <div className="max-w-4xl mx-auto text-center mb-16">
+        <motion.h1
+          className="text-4xl md:text-5xl font-bold mb-6"
+          initial={{ opacity: 0, scale: 0.2 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
+          Dedicated Portals for Every Role
+        </motion.h1>
+        <motion.p
+          className="text-lg md:text-xl text-blue-100 leading-relaxed"
+          initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+          
+        >
+          Our comprehensive system provides tailored experiences for principals, teachers, and administrators. 
+          Streamline academic management, attendance tracking, and institutional oversight through role-specific portals.
+        </motion.p>
+      </div>
 
       {/* Image Section */}
       <motion.div
-        className="flex justify-center mt-8"
-        initial={{ opacity: 0, y: 100 }} // Start from bottom with 0 opacity
-        whileInView={{ opacity: 1, y: 0 }} // Animate to original position
-        transition={{ duration: 1.2, ease: "easeOut" }} // Slight delay for a staggered effect
-        viewport={{ once: true }}
+        className="max-w-2xl mx-auto"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <img src="/images/team.jpg" alt="team" className="w-[500px] h-[600px] rounded-lg" />
+        <div className="relative aspect-[5/3] rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent" />
+          <motion.img
+            src="/images/team.jpg"
+            alt="Team collaboration interface preview"
+            className="object-cover w-full h-88 transform hover:scale-102 transition-transform duration-300"
+            initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+           
+          />
+        </div>
       </motion.div>
-    </div>
-  {/*End of separate portals section*/}
+    </section>
 
+  {/*New- Messaging System */}
+  <section className="bg-blue-900/30 py-16 md:py-24">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row gap-12 items-center">
+        {/* Left Section (Title and Paragraph) */}
+        <div className="md:w-1/2 space-y-6">
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            Integrated Communication Hub
+          </motion.h2>
+          <motion.p
+            className="text-lg text-blue-100 leading-relaxed"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+          >
+            Foster seamless collaboration with our real-time messaging platform. Engage in instant discussions, 
+            share resources, and maintain continuous communication with all institutional stakeholders through 
+            secure, threaded conversations.
+          </motion.p>
+        </div>
 
- {/*start of messaging system section*/}
-  <div className="flex justify-between items-center bg-blue-950 px-12 space-x-8">
-  {/* Left Section: Heading and Paragraph */}
-  <motion.div
-    className="text-white w-1/2 ml-40"
-    initial={{ opacity: 0, x: -30 }} // Start from left with 0 opacity
-    whileInView={{ opacity: 1, x: 0 }} // Animate to original position
-    transition={{ duration: 1, ease: "easeOut" }} // Smooth transition
-    viewport={{ once: true }}
-  >
-    <h3 className="text-3xl text-center font-bold">Messaging System</h3>
-    <p className="text-[15px] mt-4  leading-relaxed">
-    Discuss and share ideas with other users through our messaging system. With this feature, you can do real-time chat with every individual associated with your institution.
-    </p>
-    </motion.div>
+        {/* Right Section (Image) */}
+        <div className="md:w-1/2 relative rounded-2xl overflow-hidden shadow-xl border-2 border-blue-900">
+          <motion.img
+            src="/images/messaging.jpg"
+            alt="Messaging interface preview"
+            className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
+        </div>
+      </div>
+    </section>
 
-  {/* Right Section: Image */}
-  <motion.div
-        className="w-1/2 flex justify-center"
-        initial={{ opacity: 0 }} // Start with 0 opacity
-        whileInView={{ opacity: 1 }} // Fade in when in view
-        transition={{ duration: 4, ease: "easeOut" }} // Smooth transition
-        viewport={{ once: true }}
-  >
-      <img
-      src="/images/messaging.jpg"
-      alt="Why Choose Us"
-      className="w-[600px] h-[400px] rounded-lg "
-    />
-   </motion.div>
-</div>
- {/*End of messaging system section*/}
-
-
- {/*Start of empowering educators section*/}
-<div className="flex justify-between items-center  bg-blue-950 px-12 space-x-8">
-  {/* Left Section:Dashboard Image*/}
-  <motion.div
-        className="w-1/2 flex justify-center"
-        initial={{ opacity: 0 }} // Start with 0 opacity
-        whileInView={{ opacity: 1 }} // Fade in when in view
-        transition={{ duration: 4, ease: "easeOut" }} // Smooth transition
-        viewport={{ once: true }}
-  >
-    <img
-      src="/images/attendence.jpg"
-      alt="Why Choose Us"
-      className="w-[700px] h-[400px] rounded-lg "
-    />
-  </motion.div>
-
-  {/* Right Section: Heading and Paragraph */}
-  <motion.div 
-   className="text-white w-1/2 ml-40"
-   initial={{ opacity: 0, x: 30 }} // Start from right with 0 opacity
-   whileInView={{ opacity: 1, x: 0 }} // Animate to original position
-   transition={{ duration: 1, ease: "easeOut" }} // Smooth transition
-   viewport={{ once: true }}
- >
-    <h3 className="text-3xl text-center font-bold">Empowering Educators with Insights</h3>
-    <p className="text-[15px] text-center mt-4 leading-relaxed">
-    Stay ahead with real-time access to student performance! Our system provides teachers with a seamless way to view attendance records and academic marks, helping them track progress, identify trends, and support students effectively. It's a smart tool to ensure every student reaches their potential.
-    </p>
-    </motion.div>
-</div>
-{/*End of empowering educators section*/}
-
-
-{/*Start of genarate reports section*/}
-  <div className="flex justify-between items-center bg-blue-950 px-12 space-x-8">
-  {/* Left Section:Heading and Para*/}
-  <motion.div 
- className="text-white w-1/2 ml-40"
- initial={{ opacity: 0, x: -30 }} // Start from left with 0 opacity
- whileInView={{ opacity: 1, x: 0 }} // Animate to original position
- transition={{ duration: 1, ease: "easeOut" }} // Smooth transition
- viewport={{ once: true }}
->
-    <h3 className="text-3xl text-center font-bold">Genarate Reports</h3>
-    <p className="text-[15px] text-center mt-4 leading-relaxed">
-    Our system allows educators and administrators to effortlessly generate comprehensive reports on student performance, attendance, and more. With just a few clicks, you can create customized reports that provide deep insights, making it easier to analyze trends, monitor progress, and make informed decisions.
-    </p>
-  </motion.div>
-
-
-  {/* Right Section: reports image */}
-    <motion.div
-        className="w-1/2 flex justify-center"
-        initial={{ opacity: 0 }} // Start with 0 opacity
-        whileInView={{ opacity: 1 }} // Fade in when in view
-        transition={{ duration: 4, ease: "easeOut" }} // Smooth transition
-        viewport={{ once: true }}
-  >
-    <img
-      src="/images/reports.png"
-      alt="Why Choose Us"
-      className="w-[400px] h-[400px]  rounded-lg "
-    />
-    </motion.div>
-</div>
-{/*End of empowering educators section*/}
-
-{/*Start of all features in one place section*/}
-<div className="flex flex-col w-full h-[500px] justify-center bg-blue-500 mt-10">
-      {/* Heading Animation */}
-      <motion.h1
-        className="text-3xl text-center font-bold text-white"
-        initial={{ opacity: 0, y: -50 }} // Start faded out and slightly above
-        whileInView={{ opacity: 1, y: 0 }} // Fade in and move to original position
-        exit={{ opacity: 0, y: -50 }} // Fade out and move up when leaving
+  {/*New- Analytics & Attendance */}
+  <section className="container mx-auto px-4 py-16 md:py-24">
+    <div className="flex flex-col md:flex-row-reverse gap-12 items-center">
+      <div className="md:w-1/2 space-y-6 text-center md:text-left">
+        <motion.h2 
+        className="text-3xl md:text-4xl font-bold"
+        initial={{ opacity: 0, x: 40 }}
+        whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
-        All features in one place
-      </motion.h1>
+        >
+        Comprehensive Performance Insights
+        </motion.h2>
+        <motion.p 
+        className="text-lg text-blue-100 leading-relaxed"
+        initial={{ opacity: 0, x: 40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+        >
+        Access real-time academic analytics and attendance patterns through intuitive dashboards. 
+        Our intelligent tracking system highlights trends, flags concerns, and provides actionable 
+        insights to drive student success.
+        </motion.p>
+      </div>
 
-      {/* Paragraph Animation */}
-      <motion.p
-        className="text-[18px] text-center text-white mt-4 p-4 mx-auto max-w-6xl leading-relaxed"
-        initial={{ opacity: 0, y: 50 }} // Start faded out and below
-        whileInView={{ opacity: 1, y: 0 }} // Fade in and move up
-        transition={{ duration: 1, ease: "easeOut", delay: 0.3 }} // Delay for staggered effect
-        viewport={{ once: true }}
-      >
-        We are eduPulse, the ultimate student management system designed to simplify school operations and empower educators, 
-        and administrators. Stay connected with us, and explore how our platform can help you streamline student management 
-        effortlessly. Whether you're a teacher, principal, or administrator, eduPulse provides a dedicated portal for everyone.
-        <br /><br /> 
-        Join us today and take the first step towards a smarter, more efficient school management experience!
-      </motion.p>
+      <div className="md:w-1/2 relative rounded-2xl overflow-hidden shadow-xl border-2 border-blue-900">
+        <motion.img
+          src="/images/attendence.jpg"
+          alt="Analytics dashboard preview"
+          className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        />
+      </div>
+    </div>
+  </section>
 
-      {/* Buttons Animation */}
+  {/* Reporting Section */}
+  <section className="bg-blue-900/30 py-16 md:py-24">
+    <div className="container mx-auto px-4 flex flex-col md:flex-row gap-12 items-center">
+      <div className="md:w-1/2 space-y-6">
+        <motion.h2 
+        className="text-3xl md:text-4xl font-bold"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        >
+        Dynamic Reporting Engine
+        </motion.h2>
+        <motion.p 
+        className="text-lg text-blue-100 leading-relaxed"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+        >
+        Generate comprehensive, customizable reports with one-click functionality. From individual 
+        student progress to institutional overviews, our system transforms raw data into actionable 
+        intelligence through intuitive visualizations.
+        </motion.p>
+      </div>
+      <div className="md:w-1/2 relative rounded-2xl overflow-hidden shadow-xl border-2 border-blue-900 group">
+        <motion.img
+          src="/images/reports.png"
+          alt="Report generation interface"
+          className="object-contain w-100 h-full transition-transform duration-300"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        />
+        <div className="absolute inset-0 bg-blue-950/20 group-hover:bg-transparent transition-colors duration-300" />
+      </div>
+    </div>
+  </section>
+</div>
+
+<div className="relative w-full bg-gradient-to-br from-blue-600 to-blue-900 py-24 overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 opacity-10 bg-grid-white/20 [mask-image:linear-gradient(to_bottom,transparent,black)]" />
       <motion.div
-        className="flex space-x-12 mt-6 justify-center"
-        initial={{ opacity: 0, y: 30 }} // Start faded out and slightly below
-        whileInView={{ opacity: 1, y: 0 }} // Fade in and move up
-        transition={{ duration: 1, ease: "easeOut", delay: 0.5 }} // Slight delay for natural flow
-        viewport={{ once: true }}
+      className="container mx-auto px-4 max-w-4xl text-center"
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
       >
-        {/* Sign Up Button */}
-        <Link href="/registerroles" className="text-white hover:text-blue-700">
-          <button className="flex items-center px-4 py-2 bg-gray-200 text-blue-500 font-semibold rounded-full shadow transform transition duration-300 hover:scale-110">
-            <img src="/images/signup.jpg" alt="Signup icon" className="w-7 h-7 mr-1" />
-            Sign Up now
-          </button>
-        </Link>
+        {/* Heading Section */}
+        <motion.h1
+          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent mb-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+         
+        >
+          All Features, One Unified Platform
+        </motion.h1>
 
-        {/* Contact Us Button */}
-        <Link href="/contactus" className="text-white hover:text-blue-700">
-          <button className="flex items-center px-4 py-2 bg-gray-200 text-blue-500 font-semibold rounded-full shadow transform transition duration-300 hover:scale-110">
-            <img src="/images/contactus.jpg" alt="Contact icon" className="w-7 h-7 mr-1" />
-            Contact Us
-          </button>
-        </Link>
+        {/* Description */}
+        <motion.p
+          className="text-lg md:text-xl text-blue-100 leading-relaxed mb-8"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+         
+        >
+          Welcome to <span className="font-semibold text-white">eduPulse</span> - the next-generation student management system 
+          revolutionizing school operations. Empower educators, engage administrators, and simplify institutional 
+          management through our integrated platform.
+        </motion.p>
+
+        {/* Buttons Container */}
+        <div className="flex flex-col sm:flex-row justify-center gap-6 mt-10">
+          {/* Sign Up Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+           
+          >
+            <Link href="/registerroles" className="group relative inline-block">
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-400 to-emerald-400 opacity-75 blur transition-all group-hover:opacity-100 group-hover:-inset-2" />
+              <button className="relative flex items-center px-8 py-3.5 bg-white text-blue-900 font-bold rounded-full transition-transform duration-300 hover:scale-105">
+                <UserCircleIcon className="w-6 h-6 mr-2 text-blue-600" />
+                Get Started Now
+              </button>
+            </Link>
+          </motion.div>
+
+          {/* Contact Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+           
+          >
+            <Link href="/contactus" className="group relative inline-block">
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 opacity-75 blur transition-all group-hover:opacity-100 group-hover:-inset-2" />
+              <button className="relative flex items-center px-8 py-3.5 bg-transparent border-2 border-white text-white font-bold rounded-full transition-all duration-300 hover:bg-white/10">
+                <ChatBubbleLeftRightIcon className="w-6 h-6 mr-2 text-white" />
+                Schedule Demo
+              </button>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Additional Text */}
+        <motion.p
+          className="mt-8 text-sm text-blue-200/90 italic"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+          
+        >
+          Join 500+ institutions transforming their management systems with eduPulse
+        </motion.p>
       </motion.div>
     </div>
-{/*End of all features in one place section*/}
 
 
 {/*Footer*/}
-<Footer/>
-   
+<footer className="bg-gray-900 text-white border-t border-gray-700">
+  <div className="container mx-auto px-4 py-12">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8">
+      {/* Brand Section */}
+      <div className="space-y-4">
+        <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          eduPulse
+        </h2>
+        <p className="text-sm text-gray-300 leading-relaxed">
+          Revolutionizing education management with cutting-edge solutions. 
+          Empowering institutions worldwide with intuitive tools for seamless 
+          academic operations.
+        </p>
+      </div>
+
+      {/* Quick Links */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-gray-100">Quick Links</h3>
+        <nav className="flex flex-col space-y-2">
+          {[
+            ['Sign Up', '/signup'],
+            ['Login', '/login'],
+            ['Contact', '/contact'],
+            ['Documentation', '/docs']
+          ].map(([title, url]) => (
+            <a
+              key={title}
+              href={url}
+              className="text-gray-300 hover:text-blue-400 transition-colors duration-300 group"
+            >
+              {title}
+              <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      {/* Social Media */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-gray-100">Connect With Us</h3>
+        <div className="flex space-x-4">
+          {[
+            ['Facebook', 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z', 'hover:text-blue-600'],
+            ['Twitter', 'M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z', 'hover:text-blue-400'],
+            ['Instagram', 'M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm-3.75-7.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0z', 'hover:text-pink-500'],
+            ['LinkedIn', 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4z', 'hover:text-blue-700']
+          ].map(([platform, path, hoverColor]) => (
+            <a
+              key={platform}
+              href={`https://${platform.toLowerCase()}.com`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-gray-300 ${hoverColor} transition-colors duration-300`}
+              aria-label={`Visit our ${platform} page`}
+            >
+              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d={path} />
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Newsletter */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-gray-100">Stay Updated</h3>
+        <form className="flex flex-col space-y-3">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-500 text-sm"
+          />
+          <button
+            type="submit"
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-300 text-sm"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+
+    {/* Copyright */}
+    <div className="border-t border-gray-800 pt-8 text-center">
+      <p className="text-sm text-gray-400">
+        © {new Date().getFullYear()} eduPulse. All rights reserved.
+        <span className="mx-2">|</span>
+        <a href="/privacy" className="hover:text-blue-400 transition-colors duration-300">
+          Privacy Policy
+        </a>
+        <span className="mx-2">|</span>
+        <a href="/terms" className="hover:text-blue-400 transition-colors duration-300">
+          Terms of Service
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
     
     </main>
     </div>

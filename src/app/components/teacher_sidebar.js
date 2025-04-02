@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { X, Menu, LayoutDashboard, Book, Users, Mail, MessageSquare, Calendar } from "lucide-react";
+import { X, Menu, LayoutDashboard, Book,FileBarChart, CheckCheck, MessageSquare, Calendar } from "lucide-react";
 
 
 const Sidebar = () => {
@@ -15,10 +15,10 @@ const Sidebar = () => {
   };
 
   const menuItems = [
-    { name: 'Dashboard', path: '/teacherdashboard', icon: <LayoutDashboard size={20} /> },
+    { name: 'Dashboard', path: '/employeedashboard', icon: <LayoutDashboard size={20} /> },
     { name: 'Courses', path: '/Courses', icon: <Book size={20} /> },
-    { name: 'Users', path: '/settings', icon: <Users size={20} /> },
-    { name: 'Emails', path: '/admin-Emails', icon: <Mail size={20} /> },
+    { name: 'Marks', path: '/marks', icon: <FileBarChart size={20} /> },
+    { name: 'Attendence', path: '/attendence', icon: <CheckCheck size={20} /> },
     { name: 'Chat', path: '/chat', icon: <MessageSquare size={20} /> },
     { name: 'Schedule', path: '/schedule', icon: <Calendar size={20} /> },
   ];

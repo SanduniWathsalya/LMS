@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Sidebar from "../components/admin_sidebar";
+import AttendanceChart from "../components/AttendanceChart";
 
 
 const Dashboard = () => {
@@ -10,34 +11,42 @@ const Dashboard = () => {
         <Sidebar />
         {/* Main Content */}
         <div className="flex flex-col flex-1 overflow-y-auto">
-          <div className="flex items-right h-12 bg-blue-950 border-b border-gray-200">
-           
+        <div className="flex items-right h-28 bg-blue-950 border-b border-gray-200">
+          <h2 className="text-white flex items-end mb-2 ml-4 text-lg font-semibold">Welcome to Admin Dashboard</h2> 
 
-            {/* Notifications, Settings, Logout */}
-            <div className="flex items-center space-x-4 ml-auto mr-4">
-              <a href="#" className="text-white hover:text-white ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                  <path
-                    fill="currentColor"
-                    d="M6.429 2.413a.75.75 0 0 0-1.13-.986l-1.292 1.48a4.75 4.75 0 0 0-1.17 3.024L2.78 8.65a.75.75 0 1 0 1.5.031l.056-2.718a3.25 3.25 0 0 1 .801-2.069z"
-                  />
-                </svg>
-              </a>
-              <a href="#" className="text-white hover:text-white ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                  <path
-                    fill="currentColor"
-                    d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"
-                  />
-                </svg>
-              </a>
-              <a href="#" className="flex items-center text-white hover:text-gray-100 ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M10 15v-3H3v-2h7V7l5 5z" />
-                </svg>
-              </a>
-            </div>
-            </div>
+            {/* Notifications, Logout */}
+            <div className="flex items-end mb-2  justify-between space-x-4 ml-auto mr-4">
+            <a href="#" className="relative flex flex-col items-center text-white hover:text-gray-300 group">
+            {/* Logout Icon */}
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"  className="transition-transform duration-200 group-hover:scale-110">
+            <path 
+              fill="currentColor" 
+              d="M12 2C10.9 2 10 2.9 10 4V4.29C7.19 5.17 5 7.92 5 11V16L3 18V19H21V18L19 16V11C19 7.92 16.81 5.17 14 4.29V4C14 2.9 13.1 2 12 2ZM12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22Z"
+            />
+          </svg>
+          {/* Tooltip (Under the Icon) */}
+          <span className="absolute top-full mt-1 text-xs text-white bg-gray-800 px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            Notifications
+          </span>
+        </a>
+
+              
+        <a href="#" className="relative flex flex-col items-center text-white hover:text-gray-300 group">
+          {/* Logout Icon */}
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"  className="transition-transform duration-200 group-hover:scale-110">
+            <path 
+              fill="currentColor" 
+              d="M10.09 15.59L12.67 13H4V11H12.67L10.09 8.41L11.5 7L16.5 12L11.5 17L10.09 15.59ZM20 19H13V21H20C21.1 21 22 20.1 22 19V5C22 3.9 21.1 3 20 3H13V5H20V19Z"
+            />
+          </svg>
+
+          {/* Tooltip (Under the Icon) */}
+          <span className="absolute top-full mt-1 text-xs text-white bg-gray-800 px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            Logout
+          </span>
+        </a>
+        </div>
+          </div>
 
             
           <div className="grid grid-cols-1 gap-4 px-4 mt-8 sm:grid-cols-4 sm:px-8">
@@ -90,7 +99,17 @@ const Dashboard = () => {
         </div>
     </div>
 
+     {/*User Activity*/}
+     <div className="flex justify-between gap-20 sm:grid-cols-3  w-full h-auto ">
+  {/* User Activity Section */}
+  <div className="bg-white mt-5 flex-[2] justify-between min-w-[1000px] border rounded-sm overflow-hidden shadow">
+    <h1 className="text-xl font-bold text-center text-black mt-5">Student Attendence</h1>
+    <AttendanceChart />
+  </div>
     
+
+ 
+</div>
  
     
   </div>

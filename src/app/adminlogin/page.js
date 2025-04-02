@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+
 export default function AdminLoginPage() {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
@@ -44,23 +45,23 @@ export default function AdminLoginPage() {
   return (
     <div className="h-screen flex">
       <div className="w-2/3 bg-blue-50 flex flex-col justify-center items-center p-5">
-        <h2 className="text-4xl text-blue-950 font-semibold mb-3 mt-9 text-center">
+        <h2 className="text-4xl text-blue-950 font-semibold mb-3 mt-20 text-center">
           Access Your Admin Dashboard
         </h2>
-        <p className="text-gray-600 text-center mb-4 text-lg">
+        <p className="text-gray-600 text-center mb-4 text-lg ">
           Enter your username and password to get started.
         </p>
 
         <Link href="/">
-          <button className="bg-blue-500 text-white px-6 py-2 rounded font-semibold mb-3 shadow transform transition duration-300 hover:scale-110">
-            Go to Home
-          </button>
+        <button className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-2 rounded font-semibold  shadow transform transition duration-300 hover:scale-110">
+        Go to Home
+        </button>
         </Link>
 
         <img
           src="/images/loginpage.png"
           alt="Manage Illustration"
-          className="w-3/4 max-h-[500px] object-contain"
+          className="w-3/4 max-h-[500px] object-contain "
         />
       </div>
 
@@ -90,7 +91,7 @@ export default function AdminLoginPage() {
           />
         </div>
 
-        <button className="w-full bg-blue-500 text-white p-3 rounded" onClick={handleSubmit}>
+        <button className="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white p-3 rounded shadow transform transition duration-300 hover:scale-110" onClick={handleSubmit}>
           Login
         </button>
 

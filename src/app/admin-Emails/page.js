@@ -1,114 +1,121 @@
 "use client";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Sidebar from "../components/admin_sidebar"
+import { useState, useEffect } from "react";
+import Sidebar from "../components/admin_sidebar";
 
 const AdminEmails = () => {
-  const [emails, setEmails] = useState([]);
-  const [error, setError] = useState(null);
+  const [notifications, setNotifications] = useState([]);
 
-  // Fetch pending emails when the component is mounted
   useEffect(() => {
-    const fetchEmails = async () => {
-      try {
-        const response = await axios.get('http://localhost/edupulse/admin_api/adminEmails.php'); // Assuming PHP backend API
-        setEmails(response.data);
-      } catch (err) {
-        setError('Failed to fetch emails.');
-      }
-    };
-    fetchEmails();
+    fetch("http://localhost/edupulse/roles_api/get_notifications.php")
+      .then((res) => res.json())
+      .then((data) => setNotifications(data));
   }, []);
 
-  // Function to handle confirming an email
-  const handleConfirm = async (id, role) => {
+  const handleApprove = async (id, email, role) => {
     try {
-      const response = await axios.post('http://localhost/edupulse/admin_api/approveUser.php', { id, role, status: 'approved' });
-      if (response.data.message === "User status updated successfully.") {
-        // Re-fetch the list of emails after successful confirmation
-        const updatedEmails = emails.filter((email) => email.id !== id);
-        setEmails(updatedEmails);
-      }
-    } catch (err) {
-      setError('Failed to confirm user.');
-    }
-  };
+        const response = await fetch("http://localhost/edupulse/roles_api/approveUser.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: id,
+                email: email,
+                role: role,
+            }),
+        });
 
+        const data = await response.json();
+
+        if (response.ok) {
+            alert(data.message);
+        } else {
+            alert("Approval failed. Please try again.");
+            console.error("Server Error:", data);
+        }
+    } catch (error) {
+        console.error("Request failed:", error);
+    }
+};
+
+  
+  
   return (
     <main>
-    <div className="flex h-screen bg-gray-100">
+      <div className="flex h-screen bg-gray-100">
       <Sidebar />
-      {/* Main Content */}
-      <div className="flex flex-col flex-1 overflow-y-auto">
-        <div className="flex items-right h-12 bg-blue-950 border-b border-gray-200">
-         
+       {/* Main Content */}
+       <div className="flex flex-col flex-1 overflow-y-auto">
+        <div className="flex items-right h- bg-blue-950 border-b border-gray-200">
+          <h2 className="text-white flex items-end mb-2 ml-4 text-lg font-semibold">Welcome to Admin Dashboard</h2> 
 
-          {/* Notifications, Settings, Logout */}
-          <div className="flex items-center space-x-4 ml-auto mr-4">
-            <a href="#" className="text-white hover:text-white ">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M6.429 2.413a.75.75 0 0 0-1.13-.986l-1.292 1.48a4.75 4.75 0 0 0-1.17 3.024L2.78 8.65a.75.75 0 1 0 1.5.031l.056-2.718a3.25 3.25 0 0 1 .801-2.069z"
-                />
-              </svg>
-            </a>
-            <a href="#" className="text-white hover:text-white ">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"
-                />
-              </svg>
-            </a>
-            <a href="#" className="flex items-center text-white hover:text-gray-100 ">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M10 15v-3H3v-2h7V7l5 5z" />
-              </svg>
-            </a>
+            {/* Notifications, Logout */}
+            <div className="flex items-end mb-2  justify-between space-x-4 ml-auto mr-4">
+            <a href="#" className="relative flex flex-col items-center text-white hover:text-gray-300 group">
+            {/* Logout Icon */}
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"  className="transition-transform duration-200 group-hover:scale-110">
+            <path 
+              fill="currentColor" 
+              d="M12 2C10.9 2 10 2.9 10 4V4.29C7.19 5.17 5 7.92 5 11V16L3 18V19H21V18L19 16V11C19 7.92 16.81 5.17 14 4.29V4C14 2.9 13.1 2 12 2ZM12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22Z"
+            />
+          </svg>
+          {/* Tooltip (Under the Icon) */}
+          <span className="absolute top-full mt-1 text-xs text-white bg-gray-800 px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            Notifications
+          </span>
+        </a>
+
+              
+        <a href="#" className="relative flex flex-col items-center text-white hover:text-gray-300 group">
+          {/* Logout Icon */}
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"  className="transition-transform duration-200 group-hover:scale-110">
+            <path 
+              fill="currentColor" 
+              d="M10.09 15.59L12.67 13H4V11H12.67L10.09 8.41L11.5 7L16.5 12L11.5 17L10.09 15.59ZM20 19H13V21H20C21.1 21 22 20.1 22 19V5C22 3.9 21.1 3 20 3H13V5H20V19Z"
+            />
+          </svg>
+
+          {/* Tooltip (Under the Icon) */}
+          <span className="absolute top-full mt-1 text-xs text-white bg-gray-800 px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            Logout
+          </span>
+        </a>
+        </div>
           </div>
+
+
+        <div className="p-5">
+            <h2 className="text-xl font-bold text-black mb-4">
+              Pending Registrations
+            </h2>
+            {notifications.length === 0 ? (
+              <p>No new registrations.</p>
+            ) : (
+              notifications.map((notif) => (
+                <div
+                  key={notif.id}
+                  className="p-4 mb-2 bg-gray-300 text-black rounded flex justify-between"
+                >
+                  <p>{notif.message}</p>
+                  <button
+                    onClick={() =>
+                      handleApprove(notif.id, notif.email, notif.role)
+                    }
+                    className={`px-4 py-1 rounded text-white ${
+                      notif.status === "approved"
+                        ? "bg-green-700 cursor-not-allowed"
+                        : "bg-green-500 hover:bg-green-600"
+                    }`}
+                    disabled={notif.status === "approved"}
+                  >
+                    {notif.status === "approved" ? "Approved" : "Approve"}
+                  </button>
+                </div>
+              ))
+            )}
           </div>
-
-        <div className="flex flex-col flex-1 overflow-y-auto">
-          <div className="p-6 bg-gray-100 h-screen">
-            <h1 className="text-2xl font-bold text-gray-800 mb-4">Pending Registration Emails</h1>
-      
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <ul className="space-y-4">
-          {emails.length === 0 ? (
-            <li className="text-gray-500">No pending registrations.</li>
-          ) : (
-            emails.map((email) => (
-              <li key={email.id} className="flex justify-between items-center border-b pb-4">
-                <div className="flex flex-col">
-                  <p className="font-semibold">{email.fullName}</p>
-                  <p className="text-gray-600">{email.email}</p>
-                </div>
-                <div className="flex space-x-4">
-                  <button
-                    onClick={() => handleConfirm(email.id, email.role)}
-                    className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition"
-                  >
-                    Confirm
-                  </button>
-                  <button
-                    onClick={() => handleReject(email.id, email.role)}
-                    className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition"
-                  >
-                    Reject
-                  </button>
-                </div>
-              </li>
-            ))
-          )}
-        </ul>
+        </div>
       </div>
-    </div>
-    </div>
-    </div>
-    </div>
     </main>
   );
 };

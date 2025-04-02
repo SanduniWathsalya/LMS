@@ -1,6 +1,7 @@
 "use client"
 import Navbar from '../components/Navbar';
 import Footer from '../components/footer';
+import { Home, Mail, Phone } from "lucide-react";
 
 
 
@@ -59,20 +60,20 @@ const ContactUs = () => {
 
       {/* Contact Details */}
       <div className="bg-[#D4D2F6] p-6 rounded-lg w-full  md:w-[800px]">
-        <div className="space-y-4 text-black text-center font-bold">
-          <div className="flex items-center  space-x-2 justify-center">
-    
-            <p>Institute of Alexandria, Sri Jayawardenepura Kotte</p>
-          </div>
-          <div className="flex items-center space-x-2 justify-center">
-            
-            <p>edupulseschools@gmail.com</p>
-          </div>
-          <div className="flex items-center space-x-2 justify-center">
-            
-            <p>(011) 234 5567</p>
-          </div>
-        </div>
+      <div className="space-y-4 text-black text-center font-bold">
+  <div className="flex items-center space-x-2 justify-center">
+    <Home className="w-5 h-5 text-gray-600" />
+    <p>Institute of Alexandria, Sri Jayawardenepura Kotte</p>
+  </div>
+  <div className="flex items-center space-x-2 justify-center">
+    <Mail className="w-5 h-5 text-gray-600" />
+    <p>edupulseschools@gmail.com</p>
+  </div>
+  <div className="flex items-center space-x-2 justify-center">
+    <Phone className="w-5 h-5 text-gray-600" />
+    <p>(011) 234 5567</p>
+  </div>
+</div>
         <div className="relative h-[350px] w-full mt-6">
           <iframe
             width="100%"

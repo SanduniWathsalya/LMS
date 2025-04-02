@@ -63,15 +63,15 @@ export default function AdminSignPage() {
   return (
     <main>
     <div className="h-screen flex ">
-      <div className="w-2/3 bg-blue-50 flex flex-col justify-center items-center p-5">
-        <h2 className="text-4xl text-blue-950 font-semibold mb-3 text-center">
+      <div className="w-2/3 bg-blue-50 flex flex-col  justify-center items-center p-5 ">
+        <h2 className="text-4xl text-blue-950 font-semibold mb-3 text-center mt-40">
           Become a Part of Our Team
         </h2>
         <p className="text-gray-600 text-center mb-4 text-lg">
           Register as an Admin and Manage Your System with Ease
         </p>
         <Link href="/">
-          <button className="bg-blue-500 text-white px-6 py-2 rounded font-semibold mb-3 shadow transform transition duration-300 hover:scale-110">
+          <button className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-2 rounded font-semibold  shadow transform transition duration-300 hover:scale-110">
             Go to Home
           </button>
         </Link>
@@ -79,7 +79,7 @@ export default function AdminSignPage() {
         <img
           src="/images/adminregister.png"
           alt="Manage Illustration"
-          className="w-3/4 max-h-[500px] object-contain"
+          className="w-3/4 max-h-[500px] object-contain mb-20"
         />
       </div>
 
@@ -117,13 +117,17 @@ export default function AdminSignPage() {
           />
         </div>
 
-        <button className="w-full bg-blue-500 text-white p-3 rounded" onClick={handleSubmit}>
+        <button className="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white p-3 rounded shadow transform transition duration-300 hover:scale-110" onClick={handleSubmit}>
           Register
         </button>
 
-        <p className="mt-4 text-gray-400">
+        <p className="mt-4 text-gray-400 hover:text-white ">
           Already have an account?{" "}
-          <Link href="/adminlogin" className="text-blue-500">Login here</Link>
+          <Link href="/adminlogin" className="text-blue-500 hover:text-blue-400 transition-transform duration-300 hover:scale-110">
+          Login here
+         </Link>
+
+
         </p>
       </div>
     </div>
