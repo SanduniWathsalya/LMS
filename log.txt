@@ -1424,3 +1424,17 @@ System.Threading.Channels.ChannelClosedException: The channel has been closed.
 2025-04-02 08:35:11.518 +05:30 [VRB] Converting params for Notification $/setTrace to OmniSharp.Extensions.LanguageServer.Protocol.Models.SetTraceParams
 2025-04-02 08:35:11.540 +05:30 [DBG] Finished: Routing Notification $/setTrace in 21ms
 2025-04-02 08:35:11.541 +05:30 [DBG] Finished: Processing notification $/setTrace in 23ms
+2025-04-02 20:34:26.730 +05:30 [DBG] Finding descriptors for $/setTrace
+2025-04-02 20:34:27.145 +05:30 [DBG] Queueing "Parallel":$/setTrace request for processing
+2025-04-02 20:34:27.163 +05:30 [DBG] Starting: Processing notification $/setTrace
+2025-04-02 20:34:27.197 +05:30 [DBG] Starting: Routing Notification $/setTrace
+2025-04-02 20:34:27.201 +05:30 [VRB] Converting params for Notification $/setTrace to OmniSharp.Extensions.LanguageServer.Protocol.Models.SetTraceParams
+2025-04-02 20:34:27.346 +05:30 [DBG] Finished: Routing Notification $/setTrace in 145ms
+2025-04-02 20:34:27.347 +05:30 [DBG] Finished: Processing notification $/setTrace in 150ms
+2025-04-02 21:58:24.586 +05:30 [DBG] Finding descriptors for $/setTrace
+2025-04-02 21:58:24.724 +05:30 [DBG] Queueing "Parallel":$/setTrace request for processing
+2025-04-02 21:58:24.725 +05:30 [DBG] Starting: Processing notification $/setTrace
+2025-04-02 21:58:24.726 +05:30 [DBG] Starting: Routing Notification $/setTrace
+2025-04-02 21:58:24.727 +05:30 [VRB] Converting params for Notification $/setTrace to OmniSharp.Extensions.LanguageServer.Protocol.Models.SetTraceParams
+2025-04-02 21:58:24.814 +05:30 [DBG] Finished: Routing Notification $/setTrace in 88ms
+2025-04-02 21:58:24.815 +05:30 [DBG] Finished: Processing notification $/setTrace in 89ms
