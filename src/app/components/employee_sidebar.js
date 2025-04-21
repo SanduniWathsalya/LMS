@@ -27,7 +27,7 @@ const Sidebar = () => {
       {/* Sidebar Toggle Button */}
       <button
         onClick={toggleSidebar}
-        className="fixed top-4 left-4 z-50 p-2 bg-blue-500 text-yellow-300 rounded-md md:hidden"
+        className="fixed top-4 left-4 z-50 p-2 bg-blue-500  rounded-md md:hidden"
       >
         {isOpen ? <X size={18} /> : <Menu size={18} />}
       </button>
@@ -38,11 +38,9 @@ const Sidebar = () => {
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } md:translate-x-0 md:relative`}
       >
-        <Link href="/">
-          <h2 className="text-2xl font-semibold text-center text-white mb-6">Welcome</h2>
-        </Link>
+        
 
-        <nav className="flex flex-col gap-4">
+        <nav className="flex flex-col gap-4 mt-20">
           {menuItems.map((item) => (
             <Link
               key={item.path}

@@ -22,3 +22,4 @@ export async function POST(req, res) {
   });
   res.status(201).json(result);
 }
+

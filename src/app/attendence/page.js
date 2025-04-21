@@ -3,7 +3,13 @@ import { useState } from "react";
 
 const grades = [6, 7, 8, 9, 10, 11, 12, 13];
 const initialStudentData = {
-  6: ["Mark Twin", "Jenny Asmith", "Kevin Foll", "Jerry Nushell", "Jaden Doe"],
+    6: [
+      { name: "Mark Twin", admissionNo: "ST6001" },
+      { name: "Jenny Asmith", admissionNo: "ST6002" },
+      { name: "Kevin Foll", admissionNo: "ST6003" },
+      { name: "Jerry Nushell", admissionNo: "ST6004" },
+      { name: "Jaden Doe", admissionNo: "ST6005" },
+    ],
   7: ["Student D", "Student E", "Student F"],
   8: ["Student G", "Student H", "Student I"],
   9: ["Student J", "Student K", "Student L"],
@@ -17,7 +23,10 @@ export default function Attendance() {
   const [selectedGrade, setSelectedGrade] = useState(null);
   const [studentData, setStudentData] = useState(initialStudentData);
   const [newStudent, setNewStudent] = useState("");
+  
 
+  
+  
   const handleAddStudent = () => {
     if (newStudent.trim() !== "" && selectedGrade) {
       setStudentData((prevData) => ({
@@ -34,7 +43,7 @@ export default function Attendance() {
         <div className="flex items-end justify-between h-28 bg-blue-950 border-b border-gray-200 px-4">
           {/* Back Button (Left Corner) */}
           <a
-            href="/marks"
+            href="/teacherdashboard"
             className="relative flex flex-col items-center text-white hover:text-gray-300 group"
           >
             <svg
@@ -120,11 +129,35 @@ export default function Attendance() {
               <h2 className="text-2xl font-bold mb-4 text-center text-blue-950">
                 Students in Grade {selectedGrade}
               </h2>
-              <ul className="list-decimal pl-5">
-                {studentData[selectedGrade].map((student, index) => (
-                  <li key={index}>{student}</li>
-                ))}
-              </ul>
+              <table className="w-full text-left border mt-4">
+  <thead>
+    <tr className="bg-gray-100">
+      <th className="p-2 border">#</th>
+      <th className="p-2 border">Admission No</th>
+      <th className="p-2 border">Name</th>
+      <th className="p-2 border text-center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {studentData[selectedGrade].map((student, index) => (
+      <tr key={index} className="hover:bg-gray-50">
+        <td className="p-2 border">{index + 1}</td>
+        <td className="p-2 border">{student.admissionNo}</td>
+        <td className="p-2 border">{student.name}</td>
+        <td className="p-2 border text-center">
+        <a
+        href={`/student/${student.admissionNo}`}
+        className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-700 text-sm "
+      >
+        View
+      </a>
+
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
 
               {/* Add Student Section */}
               <div className="mt-6 flex items-center gap-4">
