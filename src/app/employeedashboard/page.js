@@ -2,7 +2,7 @@
 "use client";
 import { useState } from "react";
 import Sidebar from "../components/employee_sidebar";
-import AttendanceChart from "../components/AttendanceChart";
+import AttendanceChart from "../components/AttendanceChart_dashboard";
 
 const Dashboard = () => {
   return (

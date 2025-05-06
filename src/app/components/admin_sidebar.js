@@ -16,7 +16,7 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: 'Dashboard', path: '/teacherdashboard', icon: <LayoutDashboard size={20} /> },
-    { name: 'Courses', path: '/Courses', icon: <Book size={20} /> },
+    { name: 'Courses', path: '/courses', icon: <Book size={20} /> },
     { name: 'Users', path: '/settings', icon: <Users size={20} /> },
     { name: 'Emails', path: '/admin-Emails', icon: <Mail size={20} /> },
     { name: 'Chat', path: '/chat', icon: <MessageSquare size={20} /> },

@@ -16,7 +16,7 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: 'Dashboard', path: '/employeedashboard', icon: <LayoutDashboard size={20} /> },
-    { name: 'Courses', path: '/Courses', icon: <Book size={20} /> },
+    { name: 'Courses', path: '/courses', icon: <Book size={20} /> },
     { name: 'Marks', path: '/marks', icon: <FileBarChart size={20} /> },
     { name: 'Attendence', path: '/attendence', icon: <CheckCheck size={20} /> },
     { name: 'Chat', path: '/chat', icon: <MessageSquare size={20} /> },
