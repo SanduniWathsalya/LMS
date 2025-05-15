@@ -13,43 +13,69 @@ const AdminEmails = () => {
 
   const handleApprove = async (id, email, role) => {
     try {
-        const response = await fetch("http://localhost/edupulse/roles_api/approveUser.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                id: id,
-                email: email,
-                role: role,
-            }),
-        });
+      const response = await fetch("http://localhost/edupulse/roles_api/approveUser.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id, email, role }),
+      });
 
-        const data = await response.json();
+      const data = await response.json();
 
-        if (response.ok) {
-            alert(data.message);
-        } else {
-            alert("Approval failed. Please try again.");
-            console.error("Server Error:", data);
-        }
+      if (response.ok) {
+        alert(data.message);
+      } else {
+        alert("Approval failed. Please try again.");
+        console.error("Server Error:", data);
+      }
     } catch (error) {
-        console.error("Request failed:", error);
+      console.error("Request failed:", error);
     }
-};
+  };
 
-  
-  
+  // Categorize by role
+  const principalRequests = notifications.filter(n => n.role === "principal");
+  const teacherRequests = notifications.filter(n => n.role === "teacher");
+  const employeeRequests = notifications.filter(n => n.role === "employee");
+
+  // Reusable section renderer
+  const renderRequests = (title, requests) => (
+    <div className="mb-8">
+      <h2 className="text-lg font-semibold text-blue-900 mb-3">{title}</h2>
+      {requests.length === 0 ? (
+        <p className="text-gray-600">No pending requests.</p>
+      ) : (
+        requests.map((notif) => (
+          <div
+            key={notif.id}
+            className="p-4 mb-2 bg-gray-300 text-black rounded flex justify-between"
+          >
+            <p>{notif.message}</p>
+            <button
+              onClick={() => handleApprove(notif.id, notif.email, notif.role)}
+              className={`px-4 py-1 rounded text-white ${
+                notif.status === "approved"
+                  ? "bg-blue-700 cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-600"
+              }`}
+              disabled={notif.status === "approved"}
+            >
+              {notif.status === "approved" ? "Approved" : "Approve"}
+            </button>
+          </div>
+        ))
+      )}
+    </div>
+  );
+
   return (
     <main>
-      <div className="flex h-screen bg-gray-100">
-      <Sidebar />
-       {/* Main Content */}
-       <div className="flex flex-col flex-1 overflow-y-auto">
-       <div className="flex items-end justify-between h-28 bg-blue-950 border-b border-gray-200 px-4">
-          {/* Back Button (Left Corner) */}
+      <div className="bg-gray-100 min-h-screen">
+        <div className="flex items-end justify-between h-28 bg-blue-950 border-b border-gray-200 px-4">
+          {/* Back Button */}
           <a
-            href="/marks"
+            href="/admindashboard"
             className="relative flex flex-col items-center text-white hover:text-gray-300 group"
           >
             <svg
@@ -66,8 +92,9 @@ const AdminEmails = () => {
             </span>
           </a>
 
-          {/* Notifications & Logout (Right Corner) */}
+          {/* Notifications & Logout */}
           <div className="flex items-end mb-2 space-x-4">
+            {/* Notifications Icon */}
             <a
               href="#"
               className="relative flex flex-col items-center text-white hover:text-gray-300 group"
@@ -89,6 +116,7 @@ const AdminEmails = () => {
               </span>
             </a>
 
+            {/* Logout Icon */}
             <a
               href="#"
               className="relative flex flex-col items-center text-white hover:text-gray-300 group"
@@ -112,37 +140,13 @@ const AdminEmails = () => {
           </div>
         </div>
 
+        {/* Categorized Requests */}
+        <div className="p-5">
+          <h2 className="text-2xl font-bold text-black mb-6">Pending Registrations</h2>
 
-        <div className="p-5 ">
-            <h2 className="text-xl font-bold text-black mb-4 ">
-              Pending Registrations
-            </h2>
-            {notifications.length === 0 ? (
-              <p>No new registrations.</p>
-            ) : (
-              notifications.map((notif) => (
-                <div
-                  key={notif.id}
-                  className="p-4 mb-2 bg-gray-300 text-black rounded flex justify-between"
-                >
-                  <p>{notif.message}</p>
-                  <button
-                    onClick={() =>
-                      handleApprove(notif.id, notif.email, notif.role)
-                    }
-                    className={`px-4 py-1 rounded text-white ${
-                      notif.status === "approved"
-                        ? "bg-green-700 cursor-not-allowed"
-                        : "bg-green-500 hover:bg-green-600"
-                    }`}
-                    disabled={notif.status === "approved"}
-                  >
-                    {notif.status === "approved" ? "Approved" : "Approve"}
-                  </button>
-                </div>
-              ))
-            )}
-          </div>
+          {renderRequests("Principal Requests", principalRequests)}
+          {renderRequests("Teacher Requests", teacherRequests)}
+          {renderRequests("Employee Requests", employeeRequests)}
         </div>
       </div>
     </main>
