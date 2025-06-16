@@ -1,42 +1,31 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import RegisteredUserList from "../components/RegisteredUserList";
-import { FaUserTie } from "react-icons/fa"; // Import icon at the top
-import { GiTeacher } from "react-icons/gi"; // Import the teacher icon
 
-
-export default function AdminEmails() {
-  const [notifications, setNotifications] = useState([]);
-  const router = useRouter();
+const ApprovalList = ({ role }) => {
+  const [requests, setRequests] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost/edupulse/roles_api/get_notifications.php")
       .then((res) => res.json())
       .then((data) => {
-        setNotifications(data);
+        const filtered = data.filter((n) => n.role === role && n.status !== "approved");
+        setRequests(filtered);
       });
-  }, []);
+  }, [role]);
 
-  const principalRequests = notifications.filter(
-    (n) => n.role === "principal" && n.status !== "approved"
-  );
-  const teacherRequests = notifications.filter(
-    (n) => n.role === "teacher" && n.status !== "approved"
-  );
-  const employeeRequests = notifications.filter(
-    (n) => n.role === "employee" && n.status !== "approved"
-  );
+  const handleApprove = async (id, email, role) => {
+    const res = await fetch("http://localhost/edupulse/roles_api/approveUser.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, email, role }),
+    });
 
-  const approvedPrincipals = notifications.filter(
-    (n) => n.role === "principal" && n.status === "approved"
-  );
-  const approvedTeachers = notifications.filter(
-    (n) => n.role === "teacher" && n.status === "approved"
-  );
-  const approvedEmployees = notifications.filter(
-    (n) => n.role === "employee" && n.status === "approved"
-  );
+    const data = await res.json();
+    alert(data.message);
+    if (res.ok) {
+      setRequests((prev) => prev.filter((r) => r.id !== id));
+    }
+  };
 
   return (
      <main>
@@ -44,7 +33,7 @@ export default function AdminEmails() {
       <div className="flex items-end justify-between h-28 bg-blue-950 border-b border-gray-200 px-4">
         {/* Back Button (Left Corner) */}
         <a
-          href="/admindashboard"
+          href="/admin-Emails"
           className="relative flex flex-col items-center text-white hover:text-gray-300 group"
         >
           <svg
@@ -106,70 +95,34 @@ export default function AdminEmails() {
           </a>
         </div>
       </div>
+      
 
-    <div className="p-6">
-      <h2 className="text-xl font-bold mb-6 text-blue-950">New Requests</h2>
-
-      {/* Top Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
-       
-  <div
-  onClick={() => router.push("/principalrequests")}
-  className="cursor-pointer bg-blue-100 hover:bg-blue-200 p-4 rounded shadow flex items-center gap-4"
-  >
-  {/* Icon */}
-  <div className="text-blue-950 text-4xl">
-    <FaUserTie />
-  </div>
-
-  {/* Text */}
-  <div>
-    <h3 className="text-xl font-bold text-blue-950">Principal Requests</h3>
-    <p className="text-black">{principalRequests.length} pending</p>
-  </div>
-</div>
-
-    <div
-  onClick={() => router.push("/teacherrequests")}
-  className="cursor-pointer bg-green-100 hover:bg-green-200 p-4 rounded shadow flex items-center gap-4"
->
-  {/* Icon */}
-  <div className="text-green-900 text-4xl">
-    <GiTeacher />
-  </div>
-
-  {/* Text */}
-  <div>
-    <h3 className="text-xl font-bold text-green-900">Teacher Requests</h3>
-   <p className="text-black">{teacherRequests.length} pending</p>
-  </div>
-</div>
-        
-        
-        <div
-  onClick={() => router.push("/employeerequests")}
-  className="cursor-pointer bg-yellow-100 hover:bg-yellow-200 p-4 rounded shadow flex items-center gap-4"
->
-  {/* Icon */}
-  <div className="text-yellow-700 text-4xl">
-    <FaUserTie />
-  </div>
-
-  {/* Text */}
-  <div>
-    <h3 className="text-xl font-bold text-yellow-900">Employee Requests</h3>
-    <p className="text-black">{employeeRequests.length} pending</p>
-  </div>
-</div>
-
-      </div>
-
-      {/* Bottom Approved Users */}
-      <RegisteredUserList title="Registered Principals" users={approvedPrincipals} />
-      <RegisteredUserList title="Registered Teachers" users={approvedTeachers} />
-      <RegisteredUserList title="Registered Employees" users={approvedEmployees} />
+    <div className="p-6 ">
+      <h2 className="text-2xl font-bold capitalize mb-4 text-blue-950">{role} Approval Requests</h2>
+      {requests.length === 0 ? (
+        <p>No pending requests</p>
+      ) : (
+        requests.map((notif) => (
+          <div
+            key={notif.id}
+            className="p-4 mb-3 bg-white rounded shadow flex justify-between items-center text-black"
+          >
+            <div>
+              <p>{notif.message}</p>
+            </div>
+            <button
+              onClick={() => handleApprove(notif.id, notif.email, notif.role)}
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Approve
+            </button>
+          </div>
+        ))
+      )}
     </div>
     </div>
     </main>
   );
-}
+};
+
+export default ApprovalList;
