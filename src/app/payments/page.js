@@ -35,15 +35,15 @@ export default function PaymentPage() {
     }
   };
 
-  const handleSubjectSelect = (e) => {
-    const value = e.target.value;
-    setSelectedSubjects((prev) =>
-      e.target.checked ? [...prev, value] : prev.filter((subj) => subj !== value)
-    );
-  };
-
-  const handlePaymentSubmit = (e) => {
+  const handlePaymentSubmit = async (e) => {
     e.preventDefault();
+    console.log("✅ Submit button clicked");
+
+    if (!studentId || !paymentType || !paymentDate) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     const data = {
       studentId,
       paymentType,
@@ -52,13 +52,49 @@ export default function PaymentPage() {
       paymentMonth,
       paymentDate,
     };
-    console.log("Submitting payment: ", data);
-    // Add API call here
+
+    console.log("📤 Sending data to backend:", data);
+
+    try {
+      const response = await fetch("http://localhost/edupulse/employee_api/save_payment.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      console.log("✅ Backend response:", result);
+
+      if (result.success) {
+        alert("✅ Payment Successful!");
+        setStudentId('');
+        setPaymentType('');
+        setSelectedSubjects([]);
+        setSemester('');
+        setPaymentMonth('');
+        setPaymentDate('');
+      } else {
+        alert("❌ Failed to save payment: " + result.message);
+      }
+    } catch (error) {
+      console.error("❌ Error:", error);
+      alert("❌ Network or server error");
+    }
   };
+  
+
+  const handleSubjectSelect = (e) => {
+    const value = e.target.value;
+    setSelectedSubjects((prev) =>
+      e.target.checked ? [...prev, value] : prev.filter((subj) => subj !== value)
+    );
+  };
+
+  
 
   return (
     <main>
-      <div className="bg-gray-100 min-h-screen">
+      <div className="bg-gray-100 ">
         {/* Header */}
         <div className="flex items-end justify-between h-28 bg-blue-950 border-b border-gray-200 px-4">
           <a href="/employeedashboard" className="relative flex flex-col items-center text-white hover:text-gray-300 group">
