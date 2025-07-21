@@ -1,5 +1,5 @@
 "use client"
-import "../../../.venv/Lib/site-packages/chart-setup";
+
 
 import Sidebar from "../components/principal-sidebar";
 import Header from "../components/principal-header";
