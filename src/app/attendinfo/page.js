@@ -1,14 +1,17 @@
 "use client";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Sidebar from "../components/teacher_sidebar";
 import { FaArrowLeft } from 'react-icons/fa';
+import { useSearchParams } from 'next/navigation';
 
-export default function GradeInfoPage() {
-  const router = useRouter();
+export default function AttendInfo() {
   const params = useSearchParams();
   const grade = params.get('grade');
+
+  const router = useRouter();
+ 
 
   const [selectedSession, setSelectedSession] = useState('');
   const [students, setStudents] = useState([]);
