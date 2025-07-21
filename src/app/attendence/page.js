@@ -1,161 +1,75 @@
-// pages/attendance.js
-"use client"
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+"use client";
+import { useState } from 'react';
+import Sidebar from "../components/teacher_sidebar";
+import { useRouter } from 'next/navigation';
 
 export default function AttendancePage() {
   const [selectedGrade, setSelectedGrade] = useState(null);
-  const [students, setStudents] = useState([]);
-  const [selectedStudent, setSelectedStudent] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [attendanceData, setAttendanceData] = useState([]);
-
   const grades = [6, 7, 8, 9, 10, 11, 12, 13];
-
-  const fetchStudents = async (grade) => {
-    try {
-      const response = await axios.get(`http://localhost/edupulse/get_students.php?grade=${grade}`);
-      setStudents(response.data);
-    } catch (error) {
-      console.error('Error fetching students:', error);
-    }
-  };
-
-  const fetchAttendance = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost/edupulse/get_attendance.php?student_id=${selectedStudent.id}&start_date=${startDate}&end_date=${endDate}`
-      );
-      setAttendanceData(response.data);
-    } catch (error) {
-      console.error('Error fetching attendance:', error);
-    }
-  };
+  const router = useRouter();
 
   const handleGradeClick = (grade) => {
     setSelectedGrade(grade);
-    fetchStudents(grade);
-  };
-
-  const handleViewAttendance = (student) => {
-    setSelectedStudent(student);
-    setShowModal(true);
-  };
-
-  const handleSubmitDateRange = () => {
-    fetchAttendance();
-    setShowModal(false);
+    router.push(`/attendinfo?grade=${grade}`);
   };
 
   return (
-    <div className="bg-[#1d2d5c]  text-white">
-      <header className="flex justify-between items-center p-4 bg-[#0f1e4c]">
-        <h1 className="text-2xl font-bold text-sky-300">eduPulse</h1>
-        <div className="space-x-2">
-          <button className="bg-blue-500 px-4 py-2 rounded">Sign Up</button>
-          <button className="bg-fuchsia-500 px-4 py-2 rounded">Login</button>
-        </div>
-      </header>
+    <main>
+      <div className="flex h-screen bg-gray-100">
+        <Sidebar />
 
-      {!selectedGrade ? (
-        <main className="p-6 bg-gray-100 text-black rounded-b-xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-8">
-            {grades.map((grade) => (
-              <button
-                key={grade}
-                onClick={() => handleGradeClick(grade)}
-                className="bg-blue-500 hover:bg-blue-600 text-white py-4 rounded-lg font-semibold shadow-md"
-              >
-                Grade {grade}
-              </button>
-            ))}
+        <div className="flex flex-col flex-1 overflow-y-auto">
+          <div className="flex items-right h-28 bg-blue-950 border-b border-gray-200">
+            <h2 className="text-white flex items-end mb-2 ml-4 text-lg font-semibold">Welcome to Teacher Dashboard</h2>
+
+            <div className="flex items-end mb-2 justify-between space-x-4 ml-auto mr-4">
+              <a href="#" className="relative flex flex-col items-center text-white hover:text-gray-300 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                  className="transition-transform duration-200 group-hover:scale-110">
+                  <path
+                    fill="currentColor"
+                    d="M12 2C10.9 2 10 2.9 10 4V4.29C7.19 5.17 5 7.92 5 11V16L3 18V19H21V18L19 16V11C19 7.92 16.81 5.17 14 4.29V4C14 2.9 13.1 2 12 2ZM12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22Z"
+                  />
+                </svg>
+                <span className="absolute top-full mt-1 text-xs text-white bg-gray-800 px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  Notifications
+                </span>
+              </a>
+
+              <a href="#" className="relative flex flex-col items-center text-white hover:text-gray-300 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                  className="transition-transform duration-200 group-hover:scale-110">
+                  <path
+                    fill="currentColor"
+                    d="M10.09 15.59L12.67 13H4V11H12.67L10.09 8.41L11.5 7L16.5 12L11.5 17L10.09 15.59ZM20 19H13V21H20C21.1 21 22 20.1 22 19V5C22 3.9 21.1 3 20 3H13V5H20V19Z"
+                  />
+                </svg>
+                <span className="absolute top-full mt-1 text-xs text-white bg-gray-800 px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  Logout
+                </span>
+              </a>
+            </div>
           </div>
-          <p className="text-center mt-8 text-lg font-semibold text-[#0f1e4c]">
-            Click a grade and check your students' attendance.
-          </p>
-        </main>
-      ) : (
-        <div className="p-6">
-          <h2 className="text-2xl font-bold mb-4">Students in Grade {selectedGrade}</h2>
-          <table className="w-full bg-white text-black rounded shadow">
-            <thead className="bg-gray-200">
-              <tr>
-                <th className="p-2">Admission No</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {students.map((student) => (
-                <tr key={student.id} className="text-center border-b">
-                  <td>{student.admission_no}</td>
-                  <td>{student.name}</td>
-                  <td>{student.email}</td>
-                  <td>
-                    <button
-                      onClick={() => handleViewAttendance(student)}
-                      className="bg-blue-600 px-2 py-1 rounded text-white"
-                    >
-                      View Attendance
-                    </button>
-                  </td>
-                </tr>
+
+          {/* Grade Selection */}
+          <main className="p-6 bg-gray-100 text-black rounded-b-xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-8">
+              {grades.map((grade) => (
+                <button
+                  key={grade}
+                  onClick={() => handleGradeClick(grade)}
+                  className="bg-blue-500 hover:bg-blue-600 text-white py-4 rounded-lg font-semibold shadow-md"
+                >
+                  Grade {grade}
+                </button>
               ))}
-            </tbody>
-          </table>
-
-          <button
-            onClick={() => setSelectedGrade(null)}
-            className="mt-4 bg-gray-600 px-4 py-2 rounded"
-          >
-            ← Back to Grades
-          </button>
+            </div>
+            <p className="text-center mt-8 text-lg font-semibold text-[#0f1e4c]">
+              Click a grade and check your students' attendance.
+            </p>
+          </main>
         </div>
-      )}
-
-      {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded text-black w-80">
-            <h3 className="text-lg font-bold mb-2">Select Date Range</h3>
-            <label className="block mb-2">Start Date:</label>
-            <input
-              type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-              className="w-full mb-2 border p-1"
-            />
-            <label className="block mb-2">End Date:</label>
-            <input
-              type="date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              className="w-full mb-2 border p-1"
-            />
-            <button
-              onClick={handleSubmitDateRange}
-              className="mt-2 bg-blue-600 px-4 py-2 rounded text-white"
-            >
-              Submit
-            </button>
-          </div>
-        </div>
-      )}
-
-      {attendanceData.length > 0 && (
-        <div className="p-6">
-          <h3 className="text-xl font-semibold mb-2">Attendance Chart</h3>
-          <ul className="bg-white text-black p-4 rounded">
-            {attendanceData.map((record, index) => (
-              <li key={index}>
-                {record.date}: {record.present === '1' ? 'Present' : 'Absent'}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+      </div>
+    </main>
   );
 }

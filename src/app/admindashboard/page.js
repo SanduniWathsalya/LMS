@@ -14,12 +14,12 @@ export default function AdminDashboard() {
         <Sidebar />
         {/* Main Content */}
         <div className="flex flex-col flex-1 overflow-y-auto">
-        <div className="flex items-right h-28 bg-blue-950 border-b border-gray-200">
-          <h2 className="text-white flex items-end mb-2 ml-4 text-lg font-semibold">Welcome to Admin Dashboard</h2> 
+        <div className="flex items-right h-28 bg-gray-100  border-b border-blue-950">
+          <h2 className="text-blue-950 flex items-end mb-2 ml-4 text-lg font-semibold">Welcome to Admin Dashboard</h2> 
 
             {/* Notifications, Logout */}
             <div className="flex items-end mb-2  justify-between space-x-4 ml-auto mr-4">
-            <a href="#" className="relative flex flex-col items-center text-white hover:text-gray-300 group">
+            <a href="#" className="relative flex flex-col items-center text-blue-950 hover:text-blue-900 group">
             {/* Logout Icon */}
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"  className="transition-transform duration-200 group-hover:scale-110">
             <path 
@@ -34,7 +34,7 @@ export default function AdminDashboard() {
         </a>
 
               
-        <a href="#" className="relative flex flex-col items-center text-white hover:text-gray-300 group">
+        <a href="#" className="relative flex flex-col items-center text-blue-950 hover:text-blue-900 group">
           {/* Logout Icon */}
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"  className="transition-transform duration-200 group-hover:scale-110">
             <path 
@@ -47,6 +47,7 @@ export default function AdminDashboard() {
           <span className="absolute top-full mt-1 text-xs text-white bg-gray-800 px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             Logout
           </span>
+          
         </a>
         </div>
           </div>
