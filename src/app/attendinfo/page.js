@@ -1,28 +1,23 @@
-"use client";
+'use client';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Sidebar from "../components/teacher_sidebar";
 import { FaArrowLeft } from 'react-icons/fa';
-import { useSearchParams } from 'next/navigation';
 
-export default function AttendInfo() {
+export default function AttendInfoClient() {
   const params = useSearchParams();
   const grade = params.get('grade');
 
   const router = useRouter();
- 
-
   const [selectedSession, setSelectedSession] = useState('');
   const [students, setStudents] = useState([]);
   const [reportDate, setReportDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [subjects, setSubjects] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState(null);
 
-  // ✅ Fetch subjects and students when grade changes
   useEffect(() => {
     if (grade) {
-      // Fetch subjects
       axios
         .get(`http://localhost/edupulse/attendence_api/get_subjects.php?grade=${grade}`)
         .then(res => {
@@ -33,7 +28,6 @@ export default function AttendInfo() {
         })
         .catch(err => console.error("Subject load error:", err));
 
-      // Fetch students for grade6, grade7, ...
       axios
         .get(`http://localhost/edupulse/attendence_api/get_students_by_grade.php?grade=grade${grade}`)
         .then(res => setStudents(res.data))
@@ -43,13 +37,14 @@ export default function AttendInfo() {
 
   return (
     <main>
-      <div className="flex  bg-gray-100">
+      <div className="flex bg-gray-100">
         <Sidebar />
 
         <div className="flex flex-col flex-1 overflow-y-auto">
-          {/* Top Bar */}
           <div className="flex items-right h-28 bg-blue-950 border-b border-gray-200">
-            <h2 className="text-white flex items-end mb-2 ml-4 text-lg font-semibold">Welcome to Teacher Dashboard</h2>
+            <h2 className="text-white flex items-end mb-2 ml-4 text-lg font-semibold">
+              Welcome to Teacher Dashboard
+            </h2>
 
             <div className="flex items-end mb-2 justify-between space-x-4 ml-auto mr-4">
               <a href="#" className="relative flex flex-col items-center text-white hover:text-gray-300 group">
@@ -67,9 +62,7 @@ export default function AttendInfo() {
             </div>
           </div>
 
-          {/* Main Content */}
           <div className="p-4">
-            {/* Top controls */}
             <div className="flex justify-between items-center mb-4">
               <button onClick={() => router.push('/attendence')} className="flex items-center bg-blue-600 text-white px-3 py-1 rounded shadow hover:bg-blue-700">
                 <FaArrowLeft className="mr-2" /> Back to Grades
@@ -77,7 +70,6 @@ export default function AttendInfo() {
               <h2 className="font-bold text-xl text-blue-800">Grade: {grade}</h2>
             </div>
 
-            {/* Session Selector */}
             <div className="text-center mb-4">
               <label className="mr-2 font-medium text-black">Session:</label>
               <select
@@ -92,7 +84,6 @@ export default function AttendInfo() {
               </select>
             </div>
 
-            {/* Subject Button List */}
             <div className="flex flex-wrap justify-center gap-2 mb-4">
               {subjects.map(sub => (
                 <button
@@ -109,7 +100,6 @@ export default function AttendInfo() {
               ))}
             </div>
 
-            {/* Subject Info Header */}
             {selectedSubject && (
               <div className="flex justify-between items-center px-4 py-2 text-blue-800 text-sm md:text-base font-medium mb-4 border-t border-b border-gray-300">
                 <div className="flex-1 text-left font-bold">
@@ -129,33 +119,29 @@ export default function AttendInfo() {
               </div>
             )}
 
-           {/* Title */}
-<h2 className="text-center text-xl font-semibold underline mb-4 text-blue-700">
-  Student List
-</h2>
+            <h2 className="text-center text-xl font-semibold underline mb-4 text-blue-700">
+              Student List
+            </h2>
 
-{/* Student Table */}
-<table className="w-full table-auto border border-gray-300">
-  <tbody>
-    {students.map(st => (
-      <tr key={st.id} className="text-center border-b text-black">
-        <td className="border p-2 font-medium">{st.id}</td>
-        <td className="border p-2">{st.name}</td>
-        <td className="border p-2">
-          <input
-            type="checkbox"
-            checked={st.present === '1'}
-            onChange={() => {
-              
-              // Optional: toggle present state in future
-            }}
-          />
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-
+            <table className="w-full table-auto border border-gray-300">
+              <tbody>
+                {students.map(st => (
+                  <tr key={st.id} className="text-center border-b text-black">
+                    <td className="border p-2 font-medium">{st.id}</td>
+                    <td className="border p-2">{st.name}</td>
+                    <td className="border p-2">
+                      <input
+                        type="checkbox"
+                        checked={st.present === '1'}
+                        onChange={() => {
+                          // Toggle present logic can go here
+                        }}
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
 
             {students.length > 0 && (
               <div className="text-right mt-6">
